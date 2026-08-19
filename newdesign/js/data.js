@@ -40,11 +40,11 @@ const CURRENT_ISSUE = {
 };
 
 const YOUTH = [
-  { img:"../assets/youth-hike.jpg", when:"22 VII – 1 VIII", ro:["Tabăra de vară — Cheile Bicazului","Cheile Bicazului"], en:["Summer Camp — Bicaz Gorges","Bicaz Gorges"] },
-  { img:"../assets/youth-choir.jpg", when:"29 VIII", ro:["Festivalul tineretului — Vecernia cu corul","Sf. Gheorghe, Madison"], en:["Youth Festival & Choir Vespers","St George, Madison"] },
-  { img:"../assets/youth-picnic.jpg", when:"17–18 X", ro:["Ritirul de toamnă pentru tineri","Sfânta Cruce, Boston"], en:["Fall Retreat for Young Adults","Holy Cross, Boston"] },
-  { img:"../assets/youth-sports.jpg", when:"SĂPTĂMÂNAL", ro:["Școala duminicală — toate parohiile","În fiecare parohie"], en:["Sunday School — all parishes","Every parish"] },
-  { img:"../assets/youth-volunteer.jpg", when:"8 XI", ro:["Întâlnirea tinerilor cu ierarhii","Centrul Eparhial"], en:["Youth Assembly with the Hierarchs","Diocesan Centre"] }
+  { img:"/assets/youth-hike.jpg", when:"22 VII – 1 VIII", ro:["Tabăra de vară — Cheile Bicazului","Cheile Bicazului"], en:["Summer Camp — Bicaz Gorges","Bicaz Gorges"] },
+  { img:"/assets/youth-choir.jpg", when:"29 VIII", ro:["Festivalul tineretului — Vecernia cu corul","Sf. Gheorghe, Madison"], en:["Youth Festival & Choir Vespers","St George, Madison"] },
+  { img:"/assets/youth-picnic.jpg", when:"17–18 X", ro:["Ritirul de toamnă pentru tineri","Sfânta Cruce, Boston"], en:["Fall Retreat for Young Adults","Holy Cross, Boston"] },
+  { img:"/assets/youth-sports.jpg", when:"SĂPTĂMÂNAL", ro:["Școala duminicală — toate parohiile","În fiecare parohie"], en:["Sunday School — all parishes","Every parish"] },
+  { img:"/assets/youth-volunteer.jpg", when:"8 XI", ro:["Întâlnirea tinerilor cu ierarhii","Centrul Eparhial"], en:["Youth Assembly with the Hierarchs","Diocesan Centre"] }
 ];
 
 const PARISHES = [
@@ -67,7 +67,7 @@ const WEEKLY = [12,15,14,18,22,26,31,29,34,38,41,37];
 const NEWS = [
   {
     id: "homily-dormition", cat: "pastoral", homily: true,
-    img: "../assets/youth-picnic.jpg",
+    img: "/assets/youth-picnic.jpg",
     kicker: { ro:"ADORMIREA · 14 VIII 2026", en:"DORMITION · 14 AUG 2026" },
     title: { ro:"Cuvânt pastoral la Adormirea Maicii Domnului", en:"Pastoral Letter on the Dormition of the Theotokos" },
     excerpt: { ro:"Preacuvios Părinte, iubiți fii duhovnicești, în postul care se deschide astăzi Biserica ne cheamă să urmăm pe Maica Domnului…", en:"Beloved in the Lord, as this fast opens today the Church calls us to follow the Mother of God…" },
@@ -89,7 +89,7 @@ const NEWS = [
   },
   {
     id: "youth-video", cat: "general", video: true, duration: "12:40",
-    img: "../assets/featured-homily.jpg",
+    img: "/assets/featured-homily.jpg",
     kicker: { ro:"TINERET · 15 VII 2026", en:"YOUTH · 15 JUL 2026" },
     title: { ro:"Mesaj video de la tabăra de tineret", en:"Video message from the youth camp" }
   },
@@ -102,7 +102,7 @@ const NEWS = [
 ];
 
 const HOMILY = {
-  img: "../assets/featured-homily.jpg",
+  img: "/assets/featured-homily.jpg",
   kicker: { ro:"CUVÂNT PASTORAL · ADORMIREA MAICII DOMNULUI", en:"PASTORAL LETTER · THE DORMITION" },
   title: { ro:"Cuvânt pastoral la Adormirea Maicii Domnului", en:"Pastoral Letter on the Dormition of the Theotokos" },
   by: "PREASFINȚITUL PĂRINTE NATHANIEL",
@@ -119,8 +119,8 @@ const HOMILY = {
   ]
 };
 
-const TODAY_SAINT_IMG = "../assets/saint-icon.jpg";
-const TODAY_PRAYER_IMG = "../assets/prayer-icon.jpg";
-const TODAY_HOMILY_IMG = "../assets/featured-homily.jpg";
-const PARISHES_HERO_IMG = "../assets/hero-cathedral.jpg";
+const TODAY_SAINT_IMG = "/assets/saint-icon.jpg";
+const TODAY_PRAYER_IMG = "/assets/prayer-icon.jpg";
+const TODAY_HOMILY_IMG = "/assets/featured-homily.jpg";
+const PARISHES_HERO_IMG = "/assets/hero-cathedral.jpg";
 const CATHEDRAL_CAPTION = { ro:"Catedrala Eparhială — Vatra Românească, Grass Lake, Michigan", en:"The Diocesan Cathedral — Vatra Românească, Grass Lake, Michigan" };

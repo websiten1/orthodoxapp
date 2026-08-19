@@ -76,7 +76,7 @@ function topbar(titleHtml, opts) {
   opts = opts || {};
   const back = opts.back
     ? `<button class="back" data-back="1">‹ <span>${esc(pick(opts.back))}</span></button>`
-    : `<div class="brand"><img src="../assets/emblem.png" alt="ROEA"><div class="brand-title">${titleHtml}</div></div>`;
+    : `<div class="brand"><img src="/assets/emblem.png" alt="ROEA"><div class="brand-title">${titleHtml}</div></div>`;
   return `<header id="topbar">
     ${back}
     <button class="lang-btn" data-toggle-lang="1">${state.lang === "ro" ? "EN" : "RO"}</button>
@@ -332,11 +332,11 @@ function screenYouth() {
   ${topbar(`<span class="brand-title-solo">${T("TINERET","YOUTH")}</span>`)}
   <main id="view">
     <p class="italic muted body" style="padding:14px 0 12px">${T("Tabere, drumeții, coruri, ritiruri și prietenie în Hristos.","Camps, hikes, choirs, retreats and fellowship in Christ.")}</p>
-    <img class="feature-img" src="../assets/youth-hero.jpg" alt="">
+    <img class="feature-img" src="/assets/youth-hero.jpg" alt="">
     <div class="triptych">
-      <img src="../assets/youth-hike.jpg" alt="">
-      <img src="../assets/youth-campfire.jpg" alt="">
-      <img src="../assets/youth-sports.jpg" alt="">
+      <img src="/assets/youth-hike.jpg" alt="">
+      <img src="/assets/youth-campfire.jpg" alt="">
+      <img src="/assets/youth-sports.jpg" alt="">
     </div>
     <hr style="margin-top:16px">
     <div class="eyebrow green" style="padding:14px 0 2px">${T("ACTIVITĂȚI","ACTIVITIES")}</div>
@@ -349,9 +349,9 @@ function screenYouth() {
       </div>
     </div>`).join("")}
     <div class="eyebrow blue" style="padding:16px 0 10px">VIDEO</div>
-    <div class="media"><img src="../assets/youth-campfire.jpg" alt=""><div class="play-overlay">${ic("play",{size:15,fill:"#A41313"})}</div><div class="dur">3:24</div></div>
+    <div class="media"><img src="/assets/youth-campfire.jpg" alt=""><div class="play-overlay">${ic("play",{size:15,fill:"#A41313"})}</div><div class="dur">3:24</div></div>
     <div class="h-serif-sm" style="margin-top:8px">${T("Tabăra 2026 — rezumat","Camp 2026 — highlights")}</div>
-    <div class="media" style="margin-top:16px"><img src="../assets/youth-choir.jpg" alt=""><div class="play-overlay">${ic("play",{size:15,fill:"#A41313"})}</div><div class="dur">5:02</div></div>
+    <div class="media" style="margin-top:16px"><img src="/assets/youth-choir.jpg" alt=""><div class="play-overlay">${ic("play",{size:15,fill:"#A41313"})}</div><div class="dur">5:02</div></div>
     <div class="h-serif-sm" style="margin:8px 0 30px">${T("Corul cântă în catedrală","The choir sings in the cathedral")}</div>
   </main>
   ${navBar()}`;
