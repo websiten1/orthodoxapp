@@ -178,7 +178,7 @@ p.sub{color:var(--muted);font-size:14.5px;font-family:var(--serif);font-style:it
 .reader.dropcap p:first-of-type::first-letter{font-size:52px;font-family:var(--caps);float:left;line-height:.82;padding:2px 9px 0 0;color:var(--red)}
 .dropcap::first-letter{font-size:52px;font-family:var(--caps);float:left;line-height:.82;padding:2px 9px 0 0;color:var(--red)}
 .reader p{margin-bottom:14px}
-.quote,.pullquote{border-radius:var(--r-md);background:var(--tint-red);border-left:3px solid var(--red);padding:12px 16px;margin:18px 0;font-family:var(--serif);font-style:italic;font-size:18px;line-height:1.4;color:var(--blue)}
+.quote,.pullquote{border-radius:var(--r-md);background:var(--tint-red);padding:14px 18px;margin:18px 0;font-family:var(--serif);font-style:italic;font-size:18px;line-height:1.4;color:var(--blue)}
 .pullquote .eyebrow{margin-top:8px}
 
 /* ---------- Media: video / photo — rounded, warm captions ---------- */
