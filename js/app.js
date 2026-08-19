@@ -13,7 +13,7 @@ const esc=x=>ESC(String(x==null?"":x));
 const fmtDayName=()=>today.toLocaleDateString(state.lang==="en"?"en-US":"ro-RO",{weekday:"long"});
 const fmtDayNum=()=>today.toLocaleDateString(state.lang==="en"?"en-US":"ro-RO",{day:"numeric",month:"long"});
 const fmtDate=iso=>new Date(iso+"T00:00:00Z").toLocaleDateString(state.lang==="en"?"en-US":"ro-RO",{weekday:"long",month:"long",day:"numeric"});
-const PART={m:{en:"Good morning",ro:"Buna dimineata"},a:{en:"Good afternoon",ro:"Buna ziua"},e:{en:"Good evening",ro:"Buna seara"}};
+const PART={m:{en:"Good morning",ro:"Bună dimineața"},a:{en:"Good afternoon",ro:"Bună ziua"},e:{en:"Good evening",ro:"Bună seara"}};
 function greeting(){var h=new Date().getHours();var p=h<12?PART.m[state.lang]:h<18?PART.a[state.lang]:PART.e[state.lang];return p+", "+((state.profileName)||(state.lang==="en"?"friend":"prietene"))+".";}
 const ICONS={
 search:'<circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/>',
@@ -34,123 +34,41 @@ function rankLabel(r){var m={pascha:"Great Feast",great:"Great Feast",feast:"Fea
 function fbClass(l){var m={free:"free",oil:"oil",fish:"fish",strict:"strict",lent:"lent"};return m[l]||"free";}
 function todayFeast(){return Liturgical.feastFor(dstr(today),state.mode);}
 function todayFast(){return Liturgical.fasting(dstr(today),state.mode);}
-function feastLabel(f){return f?(state.lang==="en"?f.name_en:f.name_ro):T("Memory of the saints of the day","Pomenirea sfintilor zilei");}
+function feastLabel(f){return f?(state.lang==="en"?f.name_en:f.name_ro):T("Memory of the saints of the day","Pomenirea sfinților zilei");}
 function screenToday(){
   var f=todayFeast();var fs=todayFast();var h="";
   h+='<div class="today-hero"><div class="today-greet">'+esc(greeting())+'</div><div class="today-day">'+esc(fmtDayName()+" - "+fmtDayNum())+"</div></div>";
-  h+='<div class="prayer-card" data-open="prayer"><div><div class="eyebrow">'+T("Today's Prayer","Rugaciunea zilei")+'</div><h3>'+T("Our Father","Tatal nostru")+'</h3><p>'+T("The Lord's Prayer, the prayer of every Christian home.","Rugaciunea Domnului, rugaciunea fiecarei case crestine.")+'</p><span class="kbd">'+T("Read the prayer","Citeste rugaciunea")+" "+ic("chev")+"</span></div></div>";
-  h+='<div class="section-title">'+T("Today's Orthodox Life","Viata ortodoxa de azi")+"</div>";
+  h+='<div class="prayer-card" data-open="prayer"><div><div class="eyebrow">'+T("Today's Prayer","Rugăciunea zilei")+'</div><h3>'+T("Our Father","Tatăl nostru")+'</h3><p>'+T("The Lord's Prayer, the prayer of every Christian home.","Rugăciunea Domnului, rugăciunea fiecărei case creștine.")+'</p><span class="kbd">'+T("Read the prayer","Citește rugăciunea")+" "+ic("chev")+"</span></div></div>";
+  h+='<div class="section-title">'+T("Today's Orthodox Life","Viața ortodoxă de azi")+"</div>";
   h+='<div class="ort-card"><div class="ort-row"><b>'+esc(feastLabel(f))+"</b>"+(f?'<span class="tag">'+esc(rankLabel(f.rank))+"</span>":"")+"</div>";
   if(f&&f.secondary&&f.secondary.length){var sec=f.secondary.map(function(s){return "<span>- "+esc(state.lang==="en"?s.name_en:s.name_ro)+"</span>";}).join("");h+='<div class="ort-sub">'+sec+"</div>";}
   h+='<div class="divider"></div><div class="ort-row"><span class="kbd">'+T("Fasting","Post")+'</span><span class="fastbadge '+fbClass(fs.level)+'">'+esc((state.lang==="en")?fs.note_en:fs.note_ro)+"</span></div>";
   h+="</div>";
-  h+='<div class="section-title">'+T("From His Grace","Cuvantul Ierarhului")+"</div>";
+  h+='<div class="section-title">'+T("From His Grace","Cuvântul Ierarhului")+"</div>";
   h+='<div class="list">'+MESSAGES.slice(0,2).map(msgCard).join("")+"</div>";
   return h;
 }
-function msgCard(m){
-  var lang=state.lang==="en";
-  var title=lang?(m.title_en||m.title):(m.title_ro||m.title);
-  var body=(lang?(m.body_en||m.body_ro||""):(m.body_ro||m.body_en||""));
-  var h="";
-  h+='<div class="item" data-open="message" data-id="'+m.id+'">';
-  if(m.has_video){h+='<div class="video-spot"><div class="play">'+ic("play")+'</div><span class="vt">'+esc(title)+'</span><span class="tag-time">'+(m.dur||"2:40")+"</span></div>";}
-  if(m.image&&!m.has_video){h+='<div class="thumb"><span>'+esc(m.occasion||T("Newsletter","Revista"))+"</span></div>";}
-  h+='<div class="hier"><div class="av">'+(m.icon||"N")+'</div><div><b>'+esc(m.author)+"</b><span>"+esc(m.date?fmtDate(m.date):(m.meta||""))+"</span></div></div>";
-  h+='<h3>'+esc(title)+"</h3><p>"+esc(body.slice(0,120))+"...</p>";
-  h+='<div class="meta">'+esc(m.occasion||"")+((m.tags||[]).map(function(t){return '<span class="tag">'+esc(t)+"</span>";}).join(""))+"</div>";
-  h+="</div>";
-  return h;
-}
 function screenNews(){
   var mag=MAGAZINE.map(function(z){return {type:"me",id:z.id,title:z.label,meta:z.year+" - "+z.issue,body_en:z.subtitle,body_ro:z.subtitle_ro};});
-  var all=[].concat(MESSAGES.map(function(m){return {type:"me",id:m.id,title:m.title||m.title_en,meta:esc(m.author||"") ,title_ro:m.title_ro,body_en:m.body_en,body_ro:m.body_ro,icon:m.icon,tags:m.tags||[],occasion:m.occasion,has_video:m.has_video,dur:m.dur};}),mag);
+  var all=[].concat(MESSAGES.map(function(m){return {type:"me",id:m.id,title:m.title||m.title_en,meta:esc(m.author||"") ,title_ro:m.title_ro,title_en:m.title_en,body_en:m.body_en,body_ro:m.body_ro,icon:m.icon,tags:m.tags||[],occasion:m.occasion,has_video:m.has_video,dur:m.dur};}),mag);
   all.sort(function(a,b){return (a.id||"").localeCompare(b.id||"");});
   var filters=["All","Pastoral","Synodal","Video","Feast"];
   var seg=filters.map(function(f){return '<button class="'+(state.msgFilter===f?"active":"")+'" data-msgf="'+f+'">'+f+"</button>";}).join("");
   var h="";
-  h+='<h1 class="screen-title">'+T("News","Noutati")+"</h1>";
-  h+='<p class="sub">'+T("From His Grace and the Solia journal.","Cuvantul Ierarhului si revista Solia.")+"</p>";
+  h+='<h1 class="screen-title">'+T("News","Noutăți")+"</h1>";
+  h+='<p class="sub">'+T("From His Grace and the Solia journal.","Cuvântul Ierarhului și revista Solia.")+"</p>";
   h+='<div class="seg">'+seg+"</div>";
-  h+='<div class="searchbar">'+ic("search")+'<input id="msgQ" placeholder="'+T("Search...","Cauta...")+'"></div>';
+  h+='<div class="searchbar">'+ic("search")+'<input id="msgQ" placeholder="'+T("Search...","Caută...")+'"></div>';
   h+='<div class="list">'+all.map(msgCard).join("")+"</div>";
-  return h;
-}
-function screenCalendar(){
-  var g=Liturgical.monthGrid(state.calY,state.calM,state.mode);
-  var mn=new Date(Date.UTC(state.calY,state.calM-1,1)).toLocaleDateString(state.lang==="en"?"en-US":"ro-RO",{month:"long",year:"numeric"});
-  var h="";
-  h+='<h1 class="screen-title">'+T("Calendar","Calendar")+"</h1>";
-  h+='<div class="seg"><button class="'+(state.mode==="new"?"active":"")+'" data-mode="new">'+T("New (Revised Julian)","Nou")+'</button><button class="'+(state.mode==="old"?"active":"")+'" data-mode="old">'+T("Old (Julian)","Vechi")+"</button></div>";
-  h+='<div class="card pad0"><div class="month-head"><button id="prevM">&#8249;</button><h3>'+mn+'</h3><button id="nextM">&#8250;</button></div>';
-  h+='<div class="dow">'+["S","M","T","W","T","F","S"].map(function(d){return "<span>"+d+"</span>";}).join("")+"</div>";
-  var sel=state.calSel||Date.UTC(state.calY,state.calM-1,today.getUTCDate());
-    h+='<div class="grid">'+g.cells.map(function(c){if(!c){return '<div class="day blank"></div>';}var cls="day";if(c.iso===sel){cls+=" today";}if(c.feast){cls+=" feat";}if(c.level==="strict"){cls+=" fast-s";}return '<button class="'+cls+'" data-iso="'+c.iso+'"><span class="n">'+c.d+"</span>"+(c.feast?'<span class="dot"></span>':"")+"</button>";}).join("")+"</div>";
-  return h;
-}
-function msgCard(m){
-  var lang=state.lang==="en";
-  var title=lang?(m.title_en||m.title):(m.title_ro||m.title);
-  var body=(lang?(m.body_en||m.body_ro||""):(m.body_ro||m.body_en||""));
-  var h="";
-  h+='<div class="item" data-open="message" data-id="'+m.id+'">';
-  if(m.has_video){h+='<div class="video-spot"><div class="play">'+ic("play")+'</div><span class="vt">'+esc(title)+'</span><span class="tag-time">'+(m.dur||"2:40")+"</span></div>";}
-  if(m.image&&!m.has_video){h+='<div class="thumb"><span>'+esc(m.occasion||T("Newsletter","Revista"))+"</span></div>";}
-  h+='<div class="hier"><div class="av">'+(m.icon||"N")+'</div><div><b>'+esc(m.author)+"</b><span>"+esc(m.date?fmtDate(m.date):(m.meta||""))+"</span></div></div>";
-  h+='<h3>'+esc(title)+"</h3><p>"+esc(body.slice(0,120))+"...</p>";
-  h+='<div class="meta">'+esc(m.occasion||"")+((m.tags||[]).map(function(t){return '<span class="tag">'+esc(t)+"</span>";}).join(""))+"</div>";
-  h+="</div>";
-  return h;
-}
-function screenNews(){
-  var mag=MAGAZINE.map(function(z){return {type:"me",id:z.id,title:z.label,meta:z.year+" - "+z.issue,body_en:z.subtitle,body_ro:z.subtitle_ro};});
-  var all=[].concat(MESSAGES.map(function(m){return {type:"me",id:m.id,title:m.title||m.title_en,meta:esc(m.author||"") ,title_ro:m.title_ro,body_en:m.body_en,body_ro:m.body_ro,icon:m.icon,tags:m.tags||[],occasion:m.occasion,has_video:m.has_video,dur:m.dur};}),mag);
-  all.sort(function(a,b){return (a.id||"").localeCompare(b.id||"");});
-  var filters=["All","Pastoral","Synodal","Video","Feast"];
-  var seg=filters.map(function(f){return '<button class="'+(state.msgFilter===f?"active":"")+'" data-msgf="'+f+'">'+f+"</button>";}).join("");
-  var h="";
-  h+='<h1 class="screen-title">'+T("News","Noutati")+"</h1>";
-  h+='<p class="sub">'+T("From His Grace and the Solia journal.","Cuvantul Ierarhului si revista Solia.")+"</p>";
-  h+='<div class="seg">'+seg+"</div>";
-  h+='<div class="searchbar">'+ic("search")+'<input id="msgQ" placeholder="'+T("Search...","Cauta...")+'"></div>';
-  h+='<div class="list">'+all.map(msgCard).join("")+"</div>";
-  return h;
-}
-function screenCalendar(){
-  var g=Liturgical.monthGrid(state.calY,state.calM,state.mode);
-  var mn=new Date(Date.UTC(state.calY,state.calM-1,1)).toLocaleDateString(state.lang==="en"?"en-US":"ro-RO",{month:"long",year:"numeric"});
-  var h="";
-  h+='<h1 class="screen-title">'+T("Calendar","Calendar")+"</h1>";
-  h+='<div class="seg"><button class="'+(state.mode==="new"?"active":"")+'" data-mode="new">'+T("New (Revised Julian)","Nou")+'</button><button class="'+(state.mode==="old"?"active":"")+'" data-mode="old">'+T("Old (Julian)","Vechi")+"</button></div>";
-  h+='<div class="card pad0"><div class="month-head"><button id="prevM">&#8249;</button><h3>'+mn+'</h3><button id="nextM">&#8250;</button></div>';
-  h+='<div class="dow">'+["S","M","T","W","T","F","S"].map(function(d){return "<span>"+d+"</span>";}).join("")+"</div>";
-  var sel=state.calSel||Date.UTC(state.calY,state.calM-1,today.getUTCDate());
-  h+='<div class="grid">'+g.cells.map(function(c,i){if(!c){return '<div class="day blank"></div>';}
-    var cls="day";if(c.isISO&&c.isISO===sel){cls+=" today";}else if(c.todayIsoSel){cls+=" today";}
-    if(c.feast){cls+=" feat";}
-    if(c.fastLevel==="strict"){cls+=" fast-s";}
-    var extra=(c.isSel?" sel-day-today":"");
-    return '<button class="'+cls+'" data-iso="'+c.isISO+'"><span class="n">'+c.d+"</span>"+(c.feast?'<span class="dot"></span>':"")+"</button>";}).join("")+"</div>";
-  h+="</div>";
   return h;
 }
 function screenParishes(){
   var list=PARISHES;
   var h="";
   h+='<h1 class="screen-title">'+T("Parishes","Parohii")+"</h1>";
-  h+='<div class="searchbar">'+ic("loc")+'<input id="parQ" placeholder="'+T("Search parish...","Cauta parohie...")+'"></div>';
+  h+='<div class="searchbar">'+ic("loc")+'<input id="parQ" placeholder="'+T("Search parish...","Caută parohie...")+'"></div>';
   h+='<div class="map">'+list.slice(0,12).map(function(p,i){return '<span class="pin" style="left:'+((i*7+8)%90)+"%;top:"+((i*11+14)%80)+'%"></span>';}).join("")+"</div>";
   h+='<div class="list">'+list.map(function(p){return '<div class="item" data-open="parish" data-id="'+p.id+'"><h3>'+esc(p.name)+'</h3><p>'+esc(p.city)+", "+esc(p.state)+" - "+esc(p.priest)+"</p></div>";}).join("")+"</div>";
-  return h;
-}
-function screenYouth(){
-  var h="";
-  h+='<h1 class="screen-title">'+T("Youth","Tineret")+"</h1>";
-  h+='<p class="sub">'+T("Camps, festivals, choirs, retreats.","Tabere, festivaluri, coruri si retragere.")+'</p>';
-  h+='<div class="section-title">'+T("Activities","Activitati")+"</div>";
-  h+='<div class="list">'+YOUTH_ACTIVITIES.map(function(a){return '<div class="item"><div class="it-top">'+ic(a.icon||"star")+'</div><div><h3>'+esc(T(a.t,a.t_ro))+"</h3><div class=\"meta\">"+esc(a.when)+" - "+esc(a.place)+"</div></div></div>";}).join("")+"</div>";
-  h+='<div class="section-title">'+T("Videos","Video")+"</div>";
-  h+='<div class="list">'+YOUTH_VIDEOS.map(function(v,i){return '<div class="video-spot"><div class="play">'+ic("play")+'</div><span class="vt">'+esc(T(v.title,v.title_ro))+'</span><span class="tag-time">'+v.dur+"</span></div>";}).join("")+"</div>";
   return h;
 }
 function openMessage(id){
@@ -158,7 +76,7 @@ function openMessage(id){
   var lang=state.lang==="en";
   var title=lang?(m.title_en||m.title):(m.title_ro||m.title);
   var body=lang?(m.body_en||m.body_ro||""):(m.body_ro||m.body_en||"");
-  openSheet('<div class="grab"></div><div class="hier"><div class="av">'+(m.icon||"N")+'</div><div><b>'+esc(m.author)+"</b><span>"+esc(m.date?fmtDate(m.date):(m.meta||""))+"</span></div></div><h2>"+esc(title)+'</h2><div class="reader dropcap">'+body.split("\n").map(function(p){var s="";s+=esc(p);return s;}).join("<br>")+'</div><button class="btn primary block" id="msgClose">'+T("Close","Inchide")+"</button>");
+  openSheet('<div class="grab"></div><div class="hier"><div class="av">'+(m.icon||"N")+'</div><div><b>'+esc(m.author)+"</b><span>"+esc(m.date?fmtDate(m.date):(m.meta||""))+"</span></div></div><h2>"+esc(title)+'</h2><div class="reader dropcap">'+body.split("\n").map(function(p){var s="";s+=esc(p);return s;}).join("<br>")+'</div><button class="btn primary block" id="msgClose">'+T("Close","Închide")+"</button>");
   var b=document.getElementById("msgClose");if(b){b.onclick=closeSheet;}
 }
 function openPrayer(){
@@ -166,11 +84,11 @@ function openPrayer(){
   var body=(ro?PRAYERS.ro:PRAYERS.en);
   var h="";
   h+='<div class="grab"></div>';
-  h+='<div class="eyebrow">'+T("Prayer of the Day","Rugaciunea zilei")+'</div>';
-  h+='<h2>'+T("Our Father","Tatal nostru")+'</h2>';
-  h+='<p class="sub">'+T("Said at every Divine Liturgy and in every home.","Rostita la fiecare Liturghie si in fiecare casa.")+'</p>';
+  h+='<div class="eyebrow">'+T("Prayer of the Day","Rugăciunea zilei")+'</div>';
+  h+='<h2>'+T("Our Father","Tatăl nostru")+'</h2>';
+  h+='<p class="sub">'+T("Said at every Divine Liturgy and in every home.","Rostită la fiecare Liturghie și în fiecare casă.")+'</p>';
   h+='<div class="reader dropcap">'+esc(body)+'</div>';
-  h+='<button class="btn primary block" id="closePray">'+esc(T("Close","Inchide"))+'</button>';
+  h+='<button class="btn primary block" id="closePray">'+esc(T("Close","Închide"))+'</button>';
   openSheet(h);
   var b=document.getElementById("closePray");
   if(b){b.onclick=closeSheet;}
@@ -181,7 +99,7 @@ function openNameDay(){
   var h="";
   h+='<div class="grab"></div>';
   h+='<h2>'+T("Name-day (saint) lookup","Ziua de nume")+'</h2>';
-  h+='<div class="searchbar">'+ic("search")+'<input id="roeaName" placeholder="'+esc(T("Search a name","Cauta un nume"))+'"></div>';
+  h+='<div class="searchbar">'+ic("search")+'<input id="roeaName" placeholder="'+esc(T("Search a name","Caută un nume"))+'"></div>';
   h+='<div class="list">'+list+'</div>';
   openSheet(h);
   var q=document.getElementById("roeaName");
@@ -190,20 +108,20 @@ function openNameDay(){
 function openDonate(){
   var h="";
   h+='<div class="grab"></div>';
-  h+='<h2>'+esc(T("Donate to the Episcopate","Donatii catre Episcopie"))+'</h2>';
-  h+='<p class="sub">'+esc(T("Your gift supports missions, youth and clergy care.","Dania dumneavoastra sustine misiunea si tineretul."))+'</p>';
+  h+='<h2>'+esc(T("Donate to the Episcopate","Donații către Episcopie"))+'</h2>';
+  h+='<p class="sub">'+esc(T("Your gift supports missions, youth and clergy care.","Dania dumneavoastră susține misiunea și tineretul."))+'</p>';
   h+='<div class="give-amt"><button>10</button><button class="active">25</button><button>50</button><button>100</button></div>';
-  h+='<button class="btn crimson block">'+esc(T("Give now","Doneaza acum"))+'</button>';
+  h+='<button class="btn crimson block">'+esc(T("Give now","Donează acum"))+'</button>';
   openSheet(h);
 }
 function openMore(){
   var h="";
   h+='<div class="grab"></div>';
   h+='<div class="list">';
-  h+='<div class="item" data-open="prayer"><h3>'+esc(T("Prayer of the Day","Rugaciunea zilei"))+'</h3></div>';
+  h+='<div class="item" data-open="prayer"><h3>'+esc(T("Prayer of the Day","Rugăciunea zilei"))+'</h3></div>';
   h+='<div class="item" data-open="nameDay"><h3>'+esc(T("Name-day Lookup","Ziua de nume"))+'</h3></div>';
-  h+='<div class="item" data-open="donate"><h3>'+esc(T("Donate","Donatii"))+'</h3></div>';
-  h+='<div class="item" data-open="prayerBook"><h3>'+esc(T("Prayer Book","Cartea de rugaciuni"))+'</h3><span class="chev">'+ic("chev")+'</span></div>';
+  h+='<div class="item" data-open="donate"><h3>'+esc(T("Donate","Donații"))+'</h3></div>';
+  h+='<div class="item" data-open="prayerBook"><h3>'+esc(T("Prayer Book","Cartea de rugăciuni"))+'</h3><span class="chev">'+ic("chev")+'</span></div>';
   h+='<div class="item" data-open="parishes"><h3>'+esc(T("Parishes","Parohii"))+'</h3></div>';
   h+='</div>';
   openSheet(h);
@@ -217,11 +135,6 @@ function openSheet(html){
   root.appendChild(ov);root.appendChild(s);
 }
 function closeSheet(){var r=document.getElementById("sheet-root");r.innerHTML="";}
-function wireCardClicks(){
-  $$("[data-open]").forEach(function(el){el.onclick=function(){var o=el.getAttribute("data-open");var id=el.getAttribute("data-id");
-    if(o==="message"){openMessage(id);}else if(o==="prayer"){openPrayer();}else if(o==="nameDay"){openMore();}else if(o==="prayerBook"){openPrayers();}
-    else if(o==="parish"){};};});
-}
 function renderList(){
   var v=document.querySelector("#view");
   var routes={today:screenToday,calendar:screenCalendar,news:screenNews,youth:screenYouth,parishes:screenParishes};
@@ -271,13 +184,13 @@ function toggleRow(label,key){
 function openSettings(){
   var h="";
   h+='<div class="grab"></div>';
-  h+='<h2>'+esc(T("Settings","Setari"))+'</h2>';
-  h+='<div class="set-title-in">'+esc(T("Notifications","Notificari"))+'</div>';
+  h+='<h2>'+esc(T("Settings","Setări"))+'</h2>';
+  h+='<div class="set-title-in">'+esc(T("Notifications","Notificări"))+'</div>';
   h+='<div class="set-group">';
-  h+=toggleRow(T("Daily saint and Synaxarion","Pomenirile zilnice si Sinaxar"),"syn");
-  h+=toggleRow(T("Daily prayer reminder","Reamintire rugaciune zilnica"),"pray");
-  h+=toggleRow(T("Important feast days","Zilele de sarbatoare"),"feast");
-  h+=toggleRow(T("New articles and magazine","Articole noi si revista"),"art");
+  h+=toggleRow(T("Daily saint and Synaxarion","Pomenirile zilnice și Sinaxar"),"syn");
+  h+=toggleRow(T("Daily prayer reminder","Reamintire rugăciune zilnică"),"pray");
+  h+=toggleRow(T("Important feast days","Zilele de sărbătoare"),"feast");
+  h+=toggleRow(T("New articles and magazine","Articole noi și revista"),"art");
   h+=toggleRow(T("New videos","Video noi"),"vid");
   h+=toggleRow(T("Youth events and activities","Evenimente pentru tineret"),"yt");
   h+="</div>";
@@ -289,7 +202,7 @@ function openSettings(){
   h+='<div class="set-title-in">'+esc(T("Account","Cont"))+'</div>';
   h+='<div class="set-group">';
   h+='<div class="item" data-open="profile"><h3>'+esc(T("My Profile","Profilul meu"))+'</h3></div>';
-  h+='<div class="item" data-open="prayers"><h3>'+esc(T("Prayer Book","Cartea de rugaciuni"))+'</h3></div>';
+  h+='<div class="item" data-open="prayers"><h3>'+esc(T("Prayer Book","Cartea de rugăciuni"))+'</h3></div>';
   h+="</div>";
   openSheet(h);
   $$(".theme-sel").forEach(function(b){b.onclick=function(){setTheme(b.getAttribute("data-theme"));};});
@@ -303,18 +216,18 @@ function openProfile(){
   h+=avatarHtml(state.profileIcon||"N",64);
   h+="</div>";
   h+='<h2 style="text-align:center">'+esc(n)+"</h2>";
-  h+='<p class="sub" style="text-align:center">'+esc(T("Member of the ROEA community","Membru al comunitatii ROEA"))+'</p>';
-  h+='<div class="set-group"><div class="set-line"><span>'+esc(T("Language","Limba"))+'</span><b>'+esc(state.lang==="en"?"English":"Roman")+'</b></div>'
+  h+='<p class="sub" style="text-align:center">'+esc(T("Member of the ROEA community","Membru al comunității ROEA"))+'</p>';
+  h+='<div class="set-group"><div class="set-line"><span>'+esc(T("Language","Limba"))+'</span><b>'+esc(state.lang==="en"?"English":"Română")+'</b></div>'
   +'<div class="set-line"><span>'+esc(T("Theme","Tema"))+'</span><b>'+esc(state.theme==="burgundy"?"Burgundy":"Blue")+'</b></div>'
-  +'<div class="set-line"><span>'+esc(T("Notifications","Notificari"))+'</span><b>'+esc(T("Enabled","Active"))+'</b></div></div>';
+  +'<div class="set-line"><span>'+esc(T("Notifications","Notificări"))+'</span><b>'+esc(T("Enabled","Active"))+'</b></div></div>';
   h+='<div class="set-title-in">'+esc(T("Saved","Salvate"))+'</div>';
-  h+='<div class="set-group"><div class="set-line">'+esc(T("3 prayers saved","3 rugaciuni salvate"))+'</div></div>';
-  h+='<div class="set-title-in">'+esc(T("Recently viewed","Vazute recent"))+'</div>';
+  h+='<div class="set-group"><div class="set-line">'+esc(T("3 prayers saved","3 rugăciuni salvate"))+'</div></div>';
+  h+='<div class="set-title-in">'+esc(T("Recently viewed","Văzute recent"))+'</div>';
   h+='<div class="set-group"><div class="set-line">'+esc(T("Synaxarion of today","Sinaxarul zilei"))+'</div></div>';
-  h+='<div class="set-title-in">'+esc(T("Account & Privacy","Cont si confidentialitate"))+'</div>';
-  h+='<div class="set-group"><div class="item"><h3>'+esc(T("Account settings","Setari de cont"))+'</h3></div>'
-  +'<div class="item"><h3>'+esc(T("Privacy","Confidentialitate"))+'</h3></div></div>';
-  h+='<button class="btn outline block" id="signOut">'+esc(T("Sign out","Iesire din cont"))+'</button>';
+  h+='<div class="set-title-in">'+esc(T("Account & Privacy","Cont și confidențialitate"))+'</div>';
+  h+='<div class="set-group"><div class="item"><h3>'+esc(T("Account settings","Setări de cont"))+'</h3></div>'
+  +'<div class="item"><h3>'+esc(T("Privacy","Confidențialitate"))+'</h3></div></div>';
+  h+='<button class="btn outline block" id="signOut">'+esc(T("Sign out","Ieșire din cont"))+'</button>';
   openSheet(h);
   var so=document.getElementById("signOut");if(so){so.onclick=function(){try{localStorage.removeItem("roea.session");}catch(e){}
   var lg=document.getElementById("login");if(lg){lg.hidden=false;}var app=document.getElementById("app");if(app){app.hidden=true;}};}
@@ -339,11 +252,11 @@ function msgCard(m){
 function screenYouth(){
   var h="";
   h+='<h1 class="screen-title">'+esc(T("Youth","Tineret"))+'</h1>';
-  h+='<p class="sub">'+esc(T("Camps, hikes, choirs, retreats and fellowship.","Tabere, drumetii, coruri si prietenie."))+"</p>";
+  h+='<p class="sub">'+esc(T("Camps, hikes, choirs, retreats and fellowship.","Tabere, drumeții, coruri și prietenie."))+"</p>";
   h+='<div class="ypgal">';
   [["assets/youth-hike.jpg",""],["assets/youth-campfire.jpg",""],["assets/youth-sports.jpg",""]].forEach(function(p){h+='<img class="yp" src="'+p[0]+'" alt="">';});
   h+="</div>";
-  h+='<div class="section-title">'+esc(T("Activities","Activitati"))+"</div>";
+  h+='<div class="section-title">'+esc(T("Activities","Activități"))+"</div>";
   h+='<div class="list">';
   function youthP(i){return ["assets/youth-hike.jpg","assets/youth-campfire.jpg","assets/youth-choir.jpg","assets/youth-sports.jpg","assets/youth-picnic.jpg","assets/youth-volunteer.jpg"][i%6];}
   YOUTH_ACTIVITIES.forEach(function(a,i){h+='<div class="item yact"><div class="yact-img"><img src="'+youthP(i)+'" alt=""></div><div style="flex:1"><h3>'+esc(T(a.t,a.t_ro))+'</h3><div class="meta">'+esc(a.when)+" · "+esc(a.place)+"</div></div></div>";});
@@ -353,8 +266,8 @@ function screenYouth(){
   h+=vsp("assets/youth-campfire.jpg",T(YOUTH_VIDEOS[0].title,YOUTH_VIDEOS[0].title_ro),YOUTH_VIDEOS[0].dur);
   h+=vsp("assets/youth-choir.jpg",T(YOUTH_VIDEOS[1].title,YOUTH_VIDEOS[1].title_ro),YOUTH_VIDEOS[1].dur);
   h+="</div>";
-  h+='<div class="section-title">'+esc(T("In action","In actiune"))+"</div>";
-  h+='<div class="list">'+vsp("assets/youth-volunteer.jpg",T("Volunteer day in the parish","Zi de voluntariat in parohie"),"3:12")+"</div>";
+  h+='<div class="section-title">'+esc(T("In action","În acțiune"))+"</div>";
+  h+='<div class="list">'+vsp("assets/youth-volunteer.jpg",T("Volunteer day in the parish","Zi de voluntariat în parohie"),"3:12")+"</div>";
   return h;
 }
 function synaxShort(f){
@@ -362,36 +275,13 @@ function synaxShort(f){
   var nm=(state.lang==="en")?f.name_en:f.name_ro;
   var txt=(state.lang==="en")
   ?"The Holy Orthodox Church commemorates today "+nm+". In the Synaxarion of the day are kept the memory of the saint, the significance of the feast and the spiritual inheritance handed down through generations."
-  :"Biserica pomeneste astazi "+feastLabel(f)+". In Sinaxarul zilei se pastreaza amintirea sfantului, semnificatia praznicului si invatatura duhovniceasca transmisa din generatie in generatie.";
+  :"Biserica pomenește astăzi "+feastLabel(f)+". În Sinaxarul zilei se păstrează amintirea sfântului, semnificația praznicului și învățătura duhovnicească transmisă din generație în generație.";
   return txt;
 }
 function openSynaxarion(feastName){
-  openSheet('<div class="grab"></div><div class="eyebrow">'+T("Synaxarion of the Day","Sinaxarul zilei")+'</div><h2>'+esc(feastName||"Saint of the day")+'</h2><div class="reader dropcap">'+esc("Saint of the day, patron and example for us. May we follow the faith and witness of the blessed ones, striving to glorify God in our own lives.")+'</div><button class="btn primary block" id="clSyn">'+esc(T("Close","Inchide"))+"</button>");
+  openSheet('<div class="grab"></div><div class="eyebrow">'+T("Synaxarion of the Day","Sinaxarul zilei")+'</div><h2>'+esc(feastName||"Saint of the day")+'</h2><div class="reader dropcap">'+esc("Saint of the day, patron and example for us. May we follow the faith and witness of the blessed ones, striving to glorify God in our own lives.")+'</div><button class="btn primary block" id="clSyn">'+esc(T("Close","Închide"))+"</button>");
   var b=document.getElementById("symSyn");b=b||document.getElementById("symSyn");
   var q=document.getElementById("clSyn");if(q){q.onclick=closeSheet;}
-}
-function screenCalendar(){
-  var g=Liturgical.monthGrid(state.calY,state.calM,state.mode);
-  var sel=state.calSel||Math.abs(Date.UTC(state.calY,state.calM-1,new Date().getUTCDate()));
-  var selDate=new Date(sel);
-  var iso=selDate.getUTCFullYear()+"-"+pad(selDate.getUTCMonth()+1)+"-"+pad(selDate.getUTCDate());
-  var f=Liturgical.feastFor(iso,state.mode);
-  var h="";
-  h+='<h1 class="screen-title">'+esc(T("Calendar","Calendar"))+'</h1>';
-  h+='<div class="seg"><button class="'+(state.mode==="new"?"active":"")+'" data-mode="new">'+esc(T("New (Revised Julian)","Nou"))+'</button><button class="'+(state.mode==="old"?"active":"")+'" data-mode="old">'+esc(T("Old (Julian)","Vechi"))+"</button></div>";
-  h+='<div class="card pad0"><div class="month-head"><button id="prevM">&#8249;</button><h3>'+esc(new Date(Date.UTC(state.calY,state.calM-1,1)).toLocaleDateString(state.lang==="en"?"en-US":"ro-RO",{month:"long",year:"numeric"}))+'</h3><button id="nextM">&#8250;</button></div>';
-  h+='<div class="dow">'+["S","M","T","W","T","F","S"].map(function(d){return "<span>"+esc(d)+"</span>";}).join("")+"</div>";
-  h+='<div class="grid">'+g.cells.map(function(c){if(!c){return '<div class="day blank"></div>';}var cls="day";if(c.iso===sel){cls+=" today";}if(c.feast){cls+=" feat";}if(c.level==="strict"){cls+=" fast-s";}return '<button class="'+cls+'" data-iso="'+c.iso+'"><span class="n">'+c.d+"</span>"+(c.feast?'<span class="dot"></span>':"")+"</button>";}).join("")+"</div>";
-  h+="</div>";
-  /* Saint of the Day */
-  h+='<div class="syn-card">';
-  h+='<img src="assets/saint-icon.jpg" alt="" class="syn-icon">';
-  h+='<div style="flex:1"><div class="eyebrow">'+esc(T("Saint of the Day","Sfantul zilei"))+'</div>';
-  h+='<b>'+esc(f?(state.lang==="en"?f.name_en:f.name_ro):T("Memory of the saints","Pomenirea sfintilor"))+"</b>";
-  h+='<p>'+esc(synShort(f))+"</p>";
-  h+='<button class="btn primary block" data-open="syn">'+esc(T("Read the Synaxarion","Citeste Sinaxarul"))+"</button>";
-  h+="</div></div>";
-  return h;
 }
 const CREED_EN=[
 "I believe in one God, the Father Almighty, Maker of heaven and earth, and of all things visible and invisible.",
@@ -410,28 +300,28 @@ const CREED_EN=[
 function openPrayers(){
   var h="";
   h+='<div class="grab"></div>';
-  h+='<h2>'+esc(T("Prayer Book","Cartea de rugaciuni"))+'</h2>';
-  h+='<p class="sub">'+esc(T("Choose a prayer to read, in Romanian or English.","Alegeti o rugaciune de citit, in romana sau engleza."))+'</p>';
-  h+='<div class="set-title-in">'+esc(T("Essential Prayers","Rugaciuni de temelie"))+'</div><div class="set-group">';
-  h+='<div class="item" data-pray="tata"><h3>'+esc(T("Our Father","Tatal nostru"))+'</h3><span class="chev">'+ic("chev")+"</span></div>";
-  h+='<div class="item" data-pray="morn"><h3>'+esc(T("Morning Prayer","Rugaciune de dimineata"))+'</h3><span class="chev">'+ic("chev")+"</span></div>";
-  h+='<div class="item" data-pray="creed"><h3>'+esc(T("The Creed (English)","Crezul (engleza)"))+'</h3><span class="chev">'+ic("chev")+"</span></div>";
+  h+='<h2>'+esc(T("Prayer Book","Cartea de rugăciuni"))+'</h2>';
+  h+='<p class="sub">'+esc(T("Choose a prayer to read, in Romanian or English.","Alegeți o rugăciune de citit, în română sau engleză."))+'</p>';
+  h+='<div class="set-title-in">'+esc(T("Essential Prayers","Rugăciuni de temelie"))+'</div><div class="set-group">';
+  h+='<div class="item" data-pray="tata"><h3>'+esc(T("Our Father","Tatăl nostru"))+'</h3><span class="chev">'+ic("chev")+"</span></div>";
+  h+='<div class="item" data-pray="morn"><h3>'+esc(T("Morning Prayer","Rugăciune de dimineață"))+'</h3><span class="chev">'+ic("chev")+"</span></div>";
+  h+='<div class="item" data-pray="creed"><h3>'+esc(T("The Creed (English)","Crezul (engleză)"))+'</h3><span class="chev">'+ic("chev")+"</span></div>";
   h+="</div>";
-  h+='<p class="sub" style="margin-top:12px">'+esc(T("Evening prayers, Psalm 50 and Marian hymns are being prepared for a future update.","Rugaciunile de seara, Psalmul 50 si imarele mariale vor fi adaugate intr-o actualizare viitoare."))+"</p>";
+  h+='<p class="sub" style="margin-top:12px">'+esc(T("Evening prayers, Psalm 50 and Marian hymns are being prepared for a future update.","Rugăciunile de seară, Psalmul 50 și imnele mariale vor fi adăugate într-o actualizare viitoare."))+"</p>";
   openSheet(h);
   $$("#sheet-root [data-pray]").forEach(function(el){el.onclick=function(){openPrayerSheet(el.getAttribute("data-pray"));};});
 }
 function openPrayerSheet(k){
   var title="",rows=[];
-  if(k==="tata"){title=T("Our Father","Tatal nostru");rows=[["EN",PRAYERS.en],["RO",PRAYERS.ro]];}
-  else if(k==="morn"){title=T("Morning Prayer","Rugaciune de dimineata");rows=[["EN",MORNING_PRAYER.en],["RO",MORNING_PRAYER.ro]];}
+  if(k==="tata"){title=T("Our Father","Tatăl nostru");rows=[["EN",PRAYERS.en],["RO",PRAYERS.ro]];}
+  else if(k==="morn"){title=T("Morning Prayer","Rugăciune de dimineață");rows=[["EN",MORNING_PRAYER.en],["RO",MORNING_PRAYER.ro]];}
   else if(k==="creed"){title=T("The Creed","Crezul");rows=[["EN",CREED_EN.join(" ")]];}
   var h="";
   h+='<div class="grab"></div>';
-  h+='<div class="eyebrow">'+esc(T("Prayer","Rugaciune"))+'</div>';
+  h+='<div class="eyebrow">'+esc(T("Prayer","Rugăciune"))+'</div>';
   h+='<h2>'+esc(title)+"</h2>";
   rows.forEach(function(r){h+='<div class="pray-lang">'+esc(r[0])+'</div><div class="reader dropcap"><p>'+esc(r[1])+"</p></div>";});
-  h+='<button class="btn primary block" id="closePray2">'+esc(T("Close","Inchide"))+"</button>";
+  h+='<button class="btn primary block" id="closePray2">'+esc(T("Close","Închide"))+"</button>";
   openSheet(h);
   var b=document.getElementById("closePray2");if(b){b.onclick=closeSheet;}
 }
@@ -479,10 +369,10 @@ function screenCalendar(){
     var f=cells.filter(function(c){return c&&c.iso===sel;})[0];
     var feast=(f&&f.feast)||null;
     h+='<div class="syn-card"><img src="assets/saint-icon.jpg" class="syn-icon" alt="">';
-    h+='<div style="flex:1"><div class="eyebrow">'+esc(T("Saint of the Day","Sfantul zilei"))+"</div>";
-    h+='<b>'+esc(feast?(state.lang==="en"?feast.name_en:feast.name_ro):T("Memory of the saints","Pomenirea sfintilor"))+"</b>";
+    h+='<div style="flex:1"><div class="eyebrow">'+esc(T("Saint of the Day","Sfântul zilei"))+"</div>";
+    h+='<b>'+esc(feast?(state.lang==="en"?feast.name_en:feast.name_ro):T("Memory of the saints","Pomenirea sfinților"))+"</b>";
     h+='<p>'+esc(feast?(state.lang==="en"?feast.name_en:feast.name_ro):"")+"</p>";
-    h+='<button class="btn primary block" data-open="syn">'+esc(T("Read the Synaxarion","Citeste Sinaxarul"))+"</button></div></div>";
+    h+='<button class="btn primary block" data-open="syn">'+esc(T("Read the Synaxarion","Citește Sinaxarul"))+"</button></div></div>";
     return h;
   }catch(err){return '<div class="screen"><div class="card"><p>'+esc(String(err&&err.message||err))+"</p></div></div>";}
 }
@@ -490,13 +380,19 @@ function screenCalendar(){
 
 function clearLogin(){var lg=document.getElementById("login");if(lg){lg.hidden=true;}}
 function requireLogin(){var lg=document.getElementById("login"),app=document.getElementById("app");if(lg){lg.hidden=false;}if(app){app.hidden=true;}}
+function toast(msg){
+  var root=document.getElementById("toasts");if(!root){return;}
+  var t=document.createElement("div");t.className="toast";t.textContent=msg;
+  root.appendChild(t);
+  setTimeout(function(){t.remove();},3200);
+}
 function handleLogin(){
-  var em=document.getElementById("l-email"),pw=document.getElementById("l-pass"),go=document.getElementById("l-go");
-  if(!em||!pw||!go){return;}
-  go.onclick=function(){
+  var em=document.getElementById("l-email"),pw=document.getElementById("l-pass"),goBtn=document.getElementById("l-go");
+  if(!em||!pw||!goBtn){return;}
+  goBtn.onclick=function(){
     var e=(em.value||"").trim();
-    if(e.indexOf("@")<1){toast(T("Enter a valid email address","Introdu o adresa de email valida"));return;}
-    if((pw.value||"").length<6){toast(T("Password must be at least 6 characters","Parola trebuie sa aiba minim 6 caractere"));return;}
+    if(e.indexOf("@")<1){toast(T("Enter a valid email address","Introdu o adresă de email validă"));return;}
+    if((pw.value||"").length<6){toast(T("Password must be at least 6 characters","Parola trebuie să aibă minim 6 caractere"));return;}
     try{localStorage.setItem("roea.session",e);}catch(err){}
     clearLogin();
     var app=document.getElementById("app");if(app){app.hidden=false;}
