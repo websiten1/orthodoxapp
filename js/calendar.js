@@ -215,6 +215,23 @@ const Liturgical = (function () {
   }
   const pad = n => (n<10?"0":"")+n;
 
+  // Daily commemorations (full saint list for the day) and Sunday epistle/
+  // gospel/tone readings, keyed "MM-DD" — sourced from the Episcopate's own
+  // 2026 Solia calendar (see DAY_SAINTS / SUNDAY_READINGS in data.js).
+  // Respects the same New/Old civil-date offset as feastFor/fasting above.
+  function daySaints(dateISO, mode) {
+    const dt = new Date(dateISO);
+    const base = mode === "old" ? new Date(dt.getTime() - JULIAN_TO_GREGORIAN_OFFSET * 86400000) : dt;
+    const key = pad(base.getUTCMonth()+1) + "-" + pad(base.getUTCDate());
+    return (typeof DAY_SAINTS !== "undefined" && DAY_SAINTS[key]) || null;
+  }
+  function sundayReading(dateISO, mode) {
+    const dt = new Date(dateISO);
+    const base = mode === "old" ? new Date(dt.getTime() - JULIAN_TO_GREGORIAN_OFFSET * 86400000) : dt;
+    const key = pad(base.getUTCMonth()+1) + "-" + pad(base.getUTCDate());
+    return (typeof SUNDAY_READINGS !== "undefined" && SUNDAY_READINGS[key]) || null;
+  }
+
   // Name-day lookup
   function nameday(name){
     const q = name.toLowerCase();
@@ -246,6 +263,8 @@ const Liturgical = (function () {
     movableCycle: (year)=>{ const P=julianPascha(year).greg; return MOVABLE.map(f=>({...f, when: addDaysUTC(P,f.off)})); },
     nameday,
     monthGrid,
+    daySaints,
+    sundayReading,
     pad
   };
 })();

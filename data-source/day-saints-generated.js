@@ -1,205 +1,6 @@
-/* ============ The Episcopate — Seed content ============ */
-
-// ---- Bilingual UI strings ----
-const I18N = {
-  en: {
-    app: "ROEA", caption: "Official App",
-    full_name: "Romanian Orthodox Episcopate of America",
-    t_today:"Today", t_cal:"Calendar", t_word:"Word", t_mag:"Magazine", t_par:"Parishes",
-    today_eyebrow:"Today · ",
-    nameDay:"Name-day lookup", parish:"Parishes", donate:"Donate", admin:"Admin", settings:"Settings", more:"More",
-    moments:"Moments", fast:"Fast today", try_search:"Search name…",
-    days_to_pascha:"Days to Pascha", week_of_workshop:"Week of the Sunday", next_great:"Next great feast",
-    epistle_gospel:"Epistle · Gospel", quick:"Quick access", bishop_word:"From His Grace",
-    featured_video:"Featured — homily of the day",
-    word_sub:"Messages, letters & homilies of the hierarch",
-    streak_label:"Streak", days_short:"days", streak_note:"keep it going!",
-    nameday_sub_short:"find yours", donate_short:"give to mission", chancery_short:"chancery",
-    view_all:"see all",
-    selected_day:"Selected day", no_commemoration:"No major commemoration",
-    magazine:"Solia Magazine", mag_sub:"The archive of the Episcopate",
-    par_sub:"Find a parish of the Episcopate",
-    close:"Close", no_results:"No results found",
-    read_issue:"Read on device", download:"Download", search_issue:"Search inside this issue",
-    directions:"Directions", contact:"Contact",
-    donate_sub:"Gift to the Episcopate — missions, clergy care, youth ministries.",
-    donate_note:"Note to the Chancery", donate_secure:"Your gift is secure and tax-deductible where applicable.",
-    nameday_sub:"When is my feast day? Search a name.", nameday_hint:"Type a name to see its feast day",
-    language:"Language", calendar_mode:"Calendar", notifications:"Notifications", notif_fast:"Fast reminders", save:"Save",
-    panel:"Panel", admin_sub:"Restricted — Chancery staff only", email:"Email", password:"Password",
-    sign_in:"Sign in", admin_demo:"Demo — any credentials open the panel",
-    admin_dash:"Diocesan Chancery dashboard", stat_users:"Active users", stat_reads:"Messages read",
-    stat_push:"Notif. opened", stat_msgs:"Messages sent", usage:"Weekly activity",
-    publish:"Publish", msg_title:"Message title", occasion:"Occasion", lang:"Language", body:"Body",
-    push_notify:"Send push notification to all users", publish_now:"Publish message",
-    add_issue:"Upload magazine issue (PDF)", recent_pub:"Recently published",
-  },
-  ro: {
-    app: "ROEA", caption: "Aplicația Oficială",
-    full_name: "Episcopia Ortodoxă Română din America",
-    t_today:"Azi", t_cal:"Calendar", t_word:"Cuvânt", t_mag:"Revistă", t_par:"Parohii",
-    today_eyebrow:"Azi · ",
-    nameDay:"Căutare nume", parish:"Parohii", donate:"Donații", admin:"Admin", settings:"Setări", more:"Mai mult",
-    moments:"Momente", fast:"Post azi", try_search:"Caută nume…",
-    days_to_pascha:"Zile până la Paști", week_of_workshop:"Săptămâna Duminică", next_great:"Următoarea sărbătoare",
-    epistle_gospel:"Apostol · Evanghelia", quick:"Acces rapid", bishop_word:"Cuvântul Ierarhului",
-    featured_video:"În prim-plan — predica zilei",
-    word_sub:"Mesaje, scrisori și omilii ale ierarhului",
-    streak_label:"Seria", days_short:"zile", streak_note:"tot așa!",
-    nameday_sub_short:"găsește-ți ziua", donate_short:"sprijină misiunea", chancery_short:"cancelaria",
-    view_all:"vezi toate",
-    selected_day:"Ziua selectată", no_commemoration:"Fără pomenire majoră",
-    magazine:"Revista Solia", mag_sub:"Arhiva Eparhiei",
-    par_sub:"Găsește o parohie a Eparhiei",
-    close:"Închide", no_results:"Niciun rezultat",
-    read_issue:"Citește", download:"Descarcă", search_issue:"Caută în acest număr",
-    directions:"Indicații", contact:"Contact",
-    donate_sub:"Dăruiește Eparhiei — misiuni, formarea clerului, tineret.",
-    donate_note:"Notă către Cancelaria", donate_secure:"Donația ta este securizată și deductibilă fiscal.",
-    nameday_sub:"Când este ziua mea de nume? Caută un nume.", nameday_hint:"Scrie un nume pentru a vedea ziua lui de sărbătoare",
-    language:"Limbă", calendar_mode:"Calendar", notifications:"Notificări", notif_fast:"Memento de post", save:"Salvează",
-    panel:"Panou", admin_sub:"Restricționat — doar Cancelaria", email:"Email", password:"Parolă",
-    sign_in:"Autentificare", admin_demo:"Demo — orice date deschid panoul",
-    admin_dash:"Panou Cancelarie Eparhială", stat_users:"Utilizatori activi", stat_reads:"Mesaje citite",
-    stat_push:"Notificări", stat_msgs:"Mesaje trimise", usage:"Activitate săptămânală",
-    publish:"Publicare", msg_title:"Titlul mesajului", occasion:"Ocazie", lang:"Limbă", body:"Text",
-    push_notify:"Trimite notificare push tuturor utilizatorilor", publish_now:"Publică mesaj",
-    add_issue:"Încarcă revistă (PDF)", recent_pub:"Publicate recent",
-  }
-};
-
-// ---- Bishop's Word (bilingual) ----
-const MESSAGES = [
-  {
-    id:"m1", date:"2026-08-14", lang:"ro", tags:["pastoral","en","ro"], image:true,
-    title:"Cuvânt pastoral la Adormirea Maicii Domnului",
-    title_en:"Pastoral Letter on the Dormition of the Theotokos",
-    author:"His Grace Bishop Nathaniel",
-    body_ro:"Preacuvios Părinte, iubiți fii duhovnicești,\n\nÎn postul care se deschide astăzi, Biserica ne cheamă să urmăm pe Maica Domnului pe calea cumpătării, a rugăciunii și a nădejdii. Adormirea nu este sfârșit, ci trecere la biruința cea fără de seară. „Ferice de cei ce plâng, că aceia se vor mângâia” — chiar și întristarea are rod, când o aducem înaintea lui Dumnezeu.\n\nVă îmbrățișez pe toți cu dragoste în Hristos.",
-    body_en:"Beloved in the Lord,\n\nAs this fast opens today, the Church calls us to follow the Mother of God on the path of temperance, prayer and hope. The Dormition is not an end but a passage to the unwaning victory. \u201cBlessed are those who mourn, for they shall be comforted\u201d — even sorrow bears fruit when we bring it before God.\n\nEmbracing you all with love in Christ.",
-    occasion:"Adormirea / Dormition", icon:"N",
-  },
-  {
-    id:"m2", date:"2026-08-02", lang:"en", tags:["synodal","en"],
-    title:"Synodal Decision on Clergy Continuing Education",
-    author:"The Diocesan Assembly",
-    body_en:"At its summer session the Diocesan Assembly, presided over by His Grace, approved a continuing-education requirement for clergy of the Episcopate, to take effect next September...",
-    body_ro:"În sesiunea de vară, Adunarea Eparhială a aprobat un program de formare continuă pentru clerul Eparhiei...",
-    occasion:"Synodal Announcement", icon:"DA",
-  },
-  {
-    id:"m3", date:"2026-07-28", lang:"ro", tags:["pastoral","ro"], image:true,
-    title:"Gând la Sfântul Ilie — ocrotitorul ploilor și al roadelor",
-    body_ro:"Astăzi Biserica-l sărbătorește pe proorocul Ilie, care prin rugăciune a oprit și a readus ploaia peste pământ. Într-o lume secătuită de apă și de sens, să cerem stăruitor darul lacrimilor și al rugăciunii calde.",
-    author:"His Grace Bishop Nathaniel", occasion:"Sfântul Ilie", icon:"N",
-  },
-  {
-    id:"m4", date:"2026-07-15", lang:"ro", tags:["video","en","ro"],
-    title:"Mesaj video de la tabăra de tineret",
-    has_video:true,
-    body_ro:"(Mesaj video) Tinerii Eparhiei sunt adunați în tabăra de vară de la Cheile Bicazului...",
-    body_en:"(Video message) The youth of the Episcopate are gathered at the summer camp at Cheile Bicazului...",
-    author:"His Grace Bishop Nathaniel", occasion:"Tineret / Youth", icon:"N",
-  },
-  {
-    id:"m5", date:"2026-06-29", lang:"en", tags:["pastoral","en","ro"],
-    title:"Feast of the Holy Apostles Peter and Paul",
-    title_ro:"Sărbătoarea Sfinților Apostoli Petru și Pavel",
-    body_en:"The Holy Apostles Peter and Paul stand as the two wings of the Church: the Rock of faith and the Light of the nations...",
-    body_ro:"Sfinții Apostoli Petru și Pavel sunt cele două aripi ale Bisericii: Stânca credinței și Lumina neamurilor...",
-    author:"His Grace Bishop Nathaniel", occasion:"Sfinții Apostoli", icon:"N",
-  },
-  {
-    id:"m6", date:"2026-07-20", lang:"en", tags:["youth","en","ro"], image:true,
-    title:"Summer Camp 2026 — opening day",
-    title_ro:"Tabăra de vară 2026 — ziua de deschidere",
-    body_en:"The camp season has begun! Young people from across the Episcopate are gathering at Cheile Bicazului for two weeks of prayer, games, hikes and new friends. We entrust them all to the Mother of God.",
-    body_ro:"Sezonul de tabără a început! Tinerii din toată Eparhia se adună la Cheile Bicazului pentru două săptămâni de rugăciune, jocuri, drumeții și prietenii noi. Îi încredințăm pe toți Maicii Domnului.",
-    author:"His Grace Bishop Andrei, Vicar Bishop", occasion:"Youth · Tineret", icon:"A",
-  },
-];
-
-// ---- Solia magazine archive ----
-const MAGAZINE = [
-  { id:"z1", year:2026, issue:"Summer", label:"Solia — Special Summer 2026", subtitle:"Synodal report, ordinations, parish life", pages:48, tags:["synodal","youth","parish"] },
-  { id:"z2", year:2026, issue:"Pascha", label:"Solia — Pascha 2026", subtitle:"Resurrection greetings, Paschal pastoral", pages:40, tags:["paschal","pastoral"] },
-  { id:"z3", year:2026, issue:"Winter", label:"Solia — Winter 2026", subtitle:"Nativity special, obituaries, anniversaries", pages:52, tags:["nativity","obituaries"] },
-  { id:"z4", year:2025, issue:"Autumn", label:"Solia — Autumn 2025", subtitle:"Diocesan assembly, youth congress", pages:44, tags:["synodal","youth"] },
-  { id:"z5", year:2025, issue:"Pascha", label:"Solia — Pascha 2025", subtitle:"125th anniversary of the Episcopate", pages:64, tags:["anniversary","paschal"] },
-  { id:"z6", year:2024, issue:"Summer", label:"Solia — Summer 2024", subtitle:"Camp photo report, new clergy", pages:38, tags:["youth","parish"] },
-  { id:"z7", year:2023, issue:"Winter", label:"Solia — Winter 2023", subtitle:"Centennial foundary issue", pages:56, tags:["obituaries","history"] },
-  { id:"z8", year:1987, issue:"Spring", label:"Solia — Spring 1987 (Archival)", subtitle:"Historical digitization — parish jubilees", pages:32, tags:["archive","history"] },
-];
-
-// ---- Parishes (ROEA-flavoured sample) ----
-const PARISHES = [
-  { id:"p1", name:"St George the Great Martyr", patron:"St George", city:"Madison", state:"WI", deanery:"Midwest", priest:"Rev. Fr. Ion Popescu", x:21, y:34, site:"facebook.com/stgeorge" },
-  { id:"p2", name:"Descent of the Holy Spirit", patron:"Pentecost", city:"Cleveland", state:"OH", deanery:"Midwest", priest:"Rev. Fr. Vasile Ionescu", x:24, y:31, site:"pogorareapogorarea.org" },
-  { id:"p3", name:"St Andrew the First-Called", patron:"St Andrew", city:"Chicago", state:"IL", deanery:"Midwest", priest:"Rev. Fr. Mihai Georgescu", x:20, y:28, site:"sfandrei-chicago.org" },
-  { id:"p4", name:"Presentation of the Theotokos", patron:"Entry into Temple", city:"Detroit", state:"MI", deanery:"Midwest", priest:"Rev. Fr. Gheorghe Dumitrescu", x:26, y:30, site:"intrarea-detroit.org" },
-  { id:"p5", name:"St Paraskevi", patron:"St Paraskeva", city:"Cambridge", state:"ON", deanery:"Ontario", priest:"Rev. Fr. Stefan Constantinescu", x:28, y:38, site:"stparaskevi.ca" },
-  { id:"p6", name:"St John the Baptist", patron:"St John", city:"Los Angeles", state:"CA", deanery:"West", priest:"Rev. Fr. Nicolae Munteanu", x:8, y:46, site:"sfioan-la.org" },
-  { id:"p7", name:"The Holy Archangels", patron:"Michael & Gabriel", city:"Seattle", state:"WA", deanery:"West", priest:"Rev. Fr. Adrian Petrescu", x:4, y:30, site:"arhanghelii-seattle.org" },
-  { id:"p8", name:"St Nicholas", patron:"St Nicholas", city:"New York", state:"NY", deanery:"East", priest:"Rev. Fr. Corneliu Radu", x:40, y:27, site:"stnicolas-nyc.org" },
-  { id:"p9", name:"Holy Cross", patron:"Exaltation", city:"Boston", state:"MA", deanery:"East", priest:"Rev. Fr. Silviu Lupașcu", x:42, y:25, site:"sfacruce-boston.org" },
-  { id:"p10", name:"Sts Constantine & Helen", patron:"Constantine & Helen", city:"Calgary", state:"AB", deanery:"Canada", priest:"Rev. Fr. Dan Ardelean", x:18, y:14, site:"sfconstantin-calgary.ca" },
-];
-const DEANERIES = [...new Set(PARISHES.map(p=>p.deanery))].sort();
-
-// ---- Featured video (homily of the day) ----
-const FEATURED_VIDEO = {
-  title_en:"Homily of the Day — the Dormition Fast",
-  title_ro:"Predica zilei — Postul Adormirii",
-  by:"His Grace Bishop Nathaniel",
-  dur:"12:40", grad:"grad-ice",
-};
-
-// ---- Community photo strip (person photos / moments) ----
-const COMMUNITY = [
-  { label:"Camps", tile:"mint", icon:"tent" },
-  { label:"Festivals", tile:"peach", icon:"sparkle" },
-  { label:"Youth", tile:"aqua", icon:"star" },
-  { label:"Choir", tile:"lilac", icon:"note" },
-  { label:"Mission", tile:"butter", icon:"heart" },
-  { label:"Feasts", tile:"rose", icon:"sun" },
-];
-
-// ---- Prayer of the day ----
-const PRAYERS = {
-  title: "Our Father", title_ro: "Tatăl nostru",
-  en: "Our Father, Who art in heaven, hallowed be Thy name. Thy kingdom come, Thy will be done, on earth as it is in heaven. Give us this day our daily bread; and forgive us our trespasses, as we forgive those who trespass against us; and lead us not into temptation, but deliver us from evil. For Thine is the kingdom, and the power, and the glory, of the Father, and of the Son, and of the Holy Spirit, now and ever and unto ages of ages. Amen.",
-  ro: "Tatăl nostru, Care ești în ceruri, sfințească-se numele Tău, vie împărăția Ta, facă-se voia Ta, precum în cer, așa și pe pământ. Pâinea noastră cea spre ființă dă-ne-o nouă astăzi; și ne iartă nouă greșelile noastre, precum și noi iertăm greșiților noștri; și nu ne duce pe noi în ispită, ci ne izbăvește de cel rău. Că a Ta este împărăția și puterea și slava, a Tatălui și a Fiului și a Sfântului Duh, acum și pururea și în vecii vecilor. Amin."
-};
-const MORNING_PRAYER = {
-  en: "Lord, direct my heart and my steps this day; strengthen me to walk in Your commandments, and keep me in Your holy will. Amen.",
-  ro: "Doamne, îndreptează inima și pașii mei în ziua aceasta; întărește-mă să umblu întru poruncile Tale și mă păzește întru voia Ta cea sfântă. Amin."
-};
-
-// ---- Youth ministry ----
-const YOUTH_ACTIVITIES = [
-  { t: "Summer Camp — Cheile Bicazului", t_ro: "Tabăra de vară — Cheile Bicazului", when: "Jul 22 – Aug 1", place: "Bicaz Gorges", icon: "tent", tile: "mint", label: true },
-  { t: "Youth Festival & Choir Vespers", t_ro: "Festivalul tineretului — Vecernia cu corul", when: "Aug 29", place: "St George, Madison", icon: "note", tile: "lilac", label: true },
-  { t: "Fall Retreat for Young Adults", t_ro: "Ritirul de toamnă pentru tineri", when: "Oct 17–18", place: "Holy Cross, Boston", icon: "heart", tile: "rose", label: true },
-  { t: "Sunday School — all parishes", t_ro: "Școala duminicală — toate parohiile", when: "Weekly", place: "Every parish", icon: "star", tile: "aqua", label: true },
-  { t: "Youth Assembly with the Hierarchs", t_ro: "Întâlnirea tinerilor cu ierarhii", when: "Nov 8", place: "Diocesan Centre", icon: "seal", tile: "butter", label: true },
-];
-const YOUTH_VIDEOS = [
-  { title: "Camp 2026 — highlights", title_ro: "Tabăra 2026 — rezumat", dur: "3:24" },
-  { title: "The choir sings in the cathedral", title_ro: "Corul cântă în catedrală", dur: "5:02" },
-];
-
-// ---- Admin analytics (mock) ----
-const ANALYTICS = {
-  users: 12840, messagesRead: 6120, notificationsOpened: 3408,
-  messages: { pastoral: 42, synodal: 18, video: 9, feast: 27 },
-  weeklyActive:[12,15,14,18,22,26,31,29,34,38,41,37],
-};
-// ---- Daily saint commemorations for 2026 (source: the Episcopate's own
-// Solia calendar; New/Revised-Julian civil dates), and Sunday epistle/
-// gospel/tone readings. See js/calendar.js daySaints()/sundayReading().
 const DAY_SAINTS = {
   "01-01": { ro: '(†) Tăierea-împrejur cea după trup a Domnului; †) Sf. Ier. Vasile cel Mare, arhiepiscopul Cezareei Capadociei și mama sa, Sf. Emilia (Anul Nou. Tedeum)', en: '(†) Circumcision of Our Lord; †) St. Basil the Great, archbishop of Caesarea in Cappadocia and his mother, St. Emilia (New Year. Thanksgiving Service)' },
-  "01-02": { ro: 'Sf. Ier. Silvestru, episcopul Romei; Sf. Cuv. Serafim de Sarov (Înainte-prăznuirea Botezului Domnului. Fără post)', en: 'Holy Hierarch Sylvester, bishop of Rome; Ven. Seraphim of Sarov (Forefeast of Theophany. Fast Free)' },
+  "01-02": { ro: 'Sf. Ier. Silvestru, episcopul Romei; Sf. Cuv. Serafim de Sarov (Înainte-prăznuirea Botezului Domnului. harți)', en: 'Holy Hierarch Sylvester, bishop of Rome; Ven. Seraphim of Sarov (Forefeast of Theophany. Fast Free)' },
   "01-03": { ro: 'Sf. Proroc Maleahi; Sf. Mc. Gordie', en: 'Holy Prophet Malachi; Martyr Gordius' },
   "01-04": { ro: 'Soborul Sf. 70 de Apostoli; Sf. Cuv. Teoctist; Sf. Cuv. Apolinaria; Sf. Cuv. Nichifor cel Lepros', en: 'Synaxis of the Seventy Apostles; Ven. Teoctist; Ven. Apolinaria; St. Nikephoros the Leper' },
   "01-05": { ro: 'Sf. Mc. Teopempt și Teonas; Sf. Cuv. Sinclitichia (Ajunul Botezului Domnului. Post)', en: 'Holy Martyrs Theopemptus and Theonas; Ven. Syncletica (Eve of Theophany. Strict Fast)' },
@@ -232,9 +33,9 @@ const DAY_SAINTS = {
   "02-01": { ro: 'Sf. Mc. Trifon; Sf. Mc. Perpetua și Felicitas (Înainte- prăznuirea Întâmpinării Domnului)', en: 'Martyrs Tryphon, Perpetua & Felicitas (Forefeast of Presentation of our Lord)' },
   "02-02": { ro: '(†) Întâmpinarea Domnului', en: '(†) Presentation of Our Lord Jesus Christ in the Temple' },
   "02-03": { ro: 'Sf. și Dreptul Simeon, primitorul de Dumnezeu; Sf. Proroci Ana', en: 'Righteous Simeon the God-receiver; Anna the Prophetess' },
-  "02-04": { ro: 'Sf. Cuv. Isidor Pelusiotul; Sf. Sfințit Mc. Avrami (Fără post)', en: 'Ven. Isidor of Pelusium; Hieromartyr Abramius (Fast free)' },
+  "02-04": { ro: 'Sf. Cuv. Isidor Pelusiotul; Sf. Sfințit Mc. Avrami (harți)', en: 'Ven. Isidor of Pelusium; Hieromartyr Abramius (Fast free)' },
   "02-05": { ro: 'Sf. Mc. Agata și Teodula', en: 'Martyrs Agatha & Theodula' },
-  "02-06": { ro: 'Sf. Ier. Vucol, episcopul Smirnei, și Fotie, patriarhul Constantinopolului; Sf. Cuv. Varsanufie cel Mare și Ioan din Gaza (Fără post)', en: 'Holy Hierarchs Bucolus, bishop of Smyrna and Photius, Patr. of Constantinople; Ven. Barsanuphius the Great and John of Gaza (Fast free)' },
+  "02-06": { ro: 'Sf. Ier. Vucol, episcopul Smirnei, și Fotie, patriarhul Constantinopolului; Sf. Cuv. Varsanufie cel Mare și Ioan din Gaza (harți)', en: 'Holy Hierarchs Bucolus, bishop of Smyrna and Photius, Patr. of Constantinople; Ven. Barsanuphius the Great and John of Gaza (Fast free)' },
   "02-07": { ro: 'Sf. Ier. Partenie, episcopul Lampsacului; Sf. Cuv. Luca din Elada', en: 'Holy Hierarch Parthenius, bishop of Lampsacus; Ven. Luke of Hellas' },
   "02-08": { ro: 'Sf. Mare Mc. Teodor Stratilat; Sf. Proroc Zaharia', en: 'Great Martyr Theodore Stratelates; Prophet Zechariah' },
   "02-09": { ro: 'Sf. Mc. Nichifor (Odovania praznicului Întâmpinării Domnului)', en: 'Martyr Nichephorus (Leave-taking of Presentation of the Lord)' },
@@ -302,9 +103,9 @@ const DAY_SAINTS = {
   "04-12": { ro: '(†) Învierea Domnului (Sfintele Paști)', en: '(†) Resurrection of Our Lord Jesus Christ (Holy Pascha)' },
   "04-13": { ro: '(†) Sfintele Paști (În această zi se săvârșesc și Slujbele Sfinților români din 11 și 12 aprilie: Sf. Ier. Calinic de la Cernica și mama sa, Sf. Cuv. Filofteia de la Pasărea, și Sf. Mc. Sava de la Buzău)', en: 'Bright Monday. (On this day, the services of the Romanian St.s commemorated on April 11 and 12 are also celebrated: Holy Hierarch Callinicus of Cernica and his mother, Ven. Philothea of Pasărea, and Martyr Sava of Buzău)' },
   "04-14": { ro: '(†) Sfintele Paști; †) Sf. Ier. Pahomie de la Gledin, episcopul Romanului', en: 'Bright Tuesday. †) Holy Hierarch Pachomius of Gledin, bishop of Roman' },
-  "04-15": { ro: 'Sf. Ap. Aristarh, Pud și Trofim; Sf. Mc. Crescent (Fără post)', en: 'Apostles of the Seventy: Aristarchus, Pudens & Trophimus; Martyr Crescens (Fast free)' },
+  "04-15": { ro: 'Sf. Ap. Aristarh, Pud și Trofim; Sf. Mc. Crescent (harți)', en: 'Apostles of the Seventy: Aristarchus, Pudens & Trophimus; Martyr Crescens (Fast free)' },
   "04-16": { ro: 'Sf. Mc. fecioare: Agapia, Irina și Hionia', en: 'Holy Virgins: Agapy, Irene and Hiona' },
-  "04-17": { ro: '†) Izvorul Tămăduirii; Sfințit Mc. Simeon, ep.Persiei (Fără post)', en: '†) Life-giving Fount of Mother of God; Hieromartyr Simeon, bishop in Persia (Fast free)' },
+  "04-17": { ro: '†) Izvorul Tămăduirii; Sfințit Mc. Simeon, ep.Persiei (harți)', en: '†) Life-giving Fount of Mother of God; Hieromartyr Simeon, bishop in Persia (Fast free)' },
   "04-18": { ro: 'Sf. Cuv. Ioan, ucenicul Sf. Grigorie Decapolitul', en: 'Ven. John, disciple of St. Gregory of Decapolis' },
   "04-19": { ro: 'Sf. Cuv. Ioan de la Lavra Veche; Sf. Sfințit Mc. Pafnutie', en: 'Ven. John of Old Lavra in Palestine; Hieromartyr Paphnutius' },
   "04-20": { ro: '†) Sf. Ier. Teotim, episcopul Tomisului; Sf. Cuv. Teodor Trihina', en: '†) Holy Hierarch Theotimus, Bishop of Tomis; Ven. Theodore Trichinas' },
@@ -351,9 +152,9 @@ const DAY_SAINTS = {
   "05-31": { ro: '(†) Pogorârea Sfântului Duh (Cincizecimea sau Rusaliile)', en: '(†) Descent of the Holy Spirit' },
   "06-01": { ro: '(†) Sfânta Treime', en: '(†) Holy Trinity' },
   "06-02": { ro: '†) Sf. Mare Mc. Ioan cel Nou de la Suceava; Sf. Ier. Nichifor Mărturisitorul, patriarhul Constantinopolului', en: '†) Great-Martyr John the New of Suceava; Holy Hierarch Nicephorus the Confessor, patr. of Constantinople' },
-  "06-03": { ro: 'Sf. Mc. Luchilian, Ipatie și Paula fecioara; Sf. Cuv. Kevin din Glendalough (Fără post)', en: 'Martyrs Lucillian, Hypatius and Paula the virgin; St. Kevin, Abbot of Glendalough (Fast free)' },
+  "06-03": { ro: 'Sf. Mc. Luchilian, Ipatie și Paula fecioara; Sf. Cuv. Kevin din Glendalough (harți)', en: 'Martyrs Lucillian, Hypatius and Paula the virgin; St. Kevin, Abbot of Glendalough (Fast free)' },
   "06-04": { ro: '†) Sf. Mc. Zotic, Atal, Camasie și Filip de la Niculițel; Sf. Ier. Mitrofan, arhiepiscopul Constantinopolului; Sf. Mironosițele Maria și Marta, surorile Dreptului Lazăr', en: '†) Martyrs of Niculitsel: Zoticus, Atallus, Camisius and Philip; Holy Hierarch Mitrophan, Patriarch of Constantinople; Myrrhbearers Mary and Martha, sisters of Lazarus the Righteous' },
-  "06-05": { ro: '† Sf. Cuv. Elisabeta de la Pasărea; Sf. Sfințit Mc. Dorotei, episcopul Tirului (Fără post)', en: '† Ven. Elisabeth of Pasărea Monastery; Hieromartyr Dorotheos of Tyrus (Fast free)' },
+  "06-05": { ro: '† Sf. Cuv. Elisabeta de la Pasărea; Sf. Sfințit Mc. Dorotei, episcopul Tirului (harți)', en: '† Ven. Elisabeth of Pasărea Monastery; Hieromartyr Dorotheos of Tyrus (Fast free)' },
   "06-06": { ro: 'Sf. Cuv. Ilarion cel Nou; Sf. Cuv. Visarion (Odovania praznicului Pogorârii Sfântului Duh)', en: 'Ven. Hilarion the New; Ven. Bessarion (Leave-taking of Descent of Holy Spirit)' },
   "06-07": { ro: 'Sf. Sfințit Mc. Teodot, episcopul Ancirei; Sf. Mc. Zenaida și Sebastian (Lăsatul secului pentru Postul Sf. Ap. Petru și Pavel)', en: 'Hieromartyr Theodotus; Martyrs Zenaida and Sebastian' },
   "06-08": { ro: '† Sf. Mc. Nicandru și Marcian; Aducerea moaștelor Sf. Mare. Mc. Teodor Stratilat (Începutul Postului Sf. Ap. Petru și Pavel. P,U,V)', en: '† Martyrs Nicander and Marcian; Translation of the Relics of martyr Theodore the Stratelates (Beginning of Fast of Holy Apostles Peter and Paul. F,W,O)' },
@@ -411,7 +212,7 @@ const DAY_SAINTS = {
   "07-30": { ro: 'Sf. Ap. Sila, Silvan, Crescent, Epenet și Andronic; Sf. Sfințit Mc. Valentin, episcopul Umbriei (L satul secului pentru Postul Adormirii Maicii Domnului)', en: 'Apostles of the Seventy: Silas, Silvanus, Crescens, Epenetus & Andronicus; Hieromartyr Valentinus, bishop of Umbria' },
   "07-31": { ro: 'Sf. și Dreptul Evdochim; Sf. și Dreptul Iosif din Arimateea (Înainte-prăznuirea scoaterii Sfintei Cruci)', en: 'Righteous Eudocimus; Righteous Joseph of Arimathea (Forefeast of the Procession of the Holy Cross.)' },
   "08-01": { ro: 'Scoaterea Sfintei Cruci; Sf. 7 fra și Mucenici Macabei (Începutul Postului Adormirii Maicii Domnului)', en: 'Procession of the Holy Cross; Seven Maccabean Martyrs (Beginning of Fast of Dormition of Mother of God)' },
-  "08-02": { ro: 'Aducerea moaștelor Sf. întâi Mc. și Arhid. Ștefan; Dreptul Gamaliel; Binecredinciosul împărat Iustinian cel Mare', en: 'Translation of the relics of the Protomartyr Stephen the Archdeacon; Righteous Gamaliel; Emperor Justinian the Great' },
+  "08-02": { ro: 'Aducerea moaștelor Sf. întâi Mc. și Arhid. tefan; Dreptul Gamaliel; Binecredinciosul împărat Iustinian cel Mare', en: 'Translation of the relics of the Protomartyr Stephen the Archdeacon; Righteous Gamaliel; Emperor Justinian the Great' },
   "08-03": { ro: '†) Sf. Cuv. Mărturisitor Iraclie din Basarabia; Sf. Cuv. Isaachie, Dalmat și Faust; Sf. Mironosi Salomeea; Sf. Cuv. Teodora din Tesalonic', en: '†) Ven. Confessor Heraclius of Bessarabia; Ven. Isaac, Dalmatos and Faustus; Holy Myrrhbearer Salome; Ven. Theodora of Thessalonica' },
   "08-04": { ro: 'Sf. 7 tineri din Efes; Sf. Mc. Tatuil', en: 'Seven Holy Youths (Sleepers) of Ephesus; Martyr Tathuil' },
   "08-05": { ro: '†) Sf. Cuv. Ioan Iacob (Hozevitul) de la Neamț; Sf. Mc. Evsignie; Sf. Nona, mama Sf. Ier. Grigorie Teologul; Sf. Ier. Fabian, episcopul Romei (Înainte- prăznuirea Schimbării la Față a Domnului)', en: '†) Ven. John Jacob the Hozevite; Martyr Eusignius; St. Nonna, mother of St. Gregory the Theologian; Holy Hierarch Fabian, bp. of Rome (Forefeast of Transfiguration)' },
@@ -425,7 +226,7 @@ const DAY_SAINTS = {
   "08-13": { ro: 'Mutarea moaștelor Sf. Cuv. Maxim Mărturisitorul; Sf. Cuv. Dorotei și Dositei (Odovania praznicului Schimbării la Față a Domnului)', en: 'Translation of the relics of Ven. Maximus the Confessor; Ven. Dorotheus and Dositheus (Leave-taking of the Transfiguration)' },
   "08-14": { ro: 'Sf. Proroc Miheia (Înainte-prăznuirea Adormirii Maicii Domnului)', en: 'Prophet Micah (Forefeast of the Dormition of the Birthgiver of God)' },
   "08-15": { ro: '(†) Adormirea Maicii Domnului', en: '(†) Dormition of the Birthgiver of God (F,W,O)' },
-  "08-16": { ro: 'Aducerea Sf. Mahrame a Domnului din Edesa la Constantinopol; †) Sf. Martiri Brâncoveni: Constantin Voievod cu cei patru fiii ai săi, Constantin, Ștefan, Radu și Matei, și sfetnicul Ianache; †) Sf. Cuv. Iosif de la Văratec; Sf. Mc. Diomid', en: 'Translation of the Icon Not-Made-by-Hands of our Lord from Edessa to Constantinople; †) Martyrs Constantin Brâncoveanu & his sons: Constantin, Stephen, Radu, Matthew and the Counselor Ianache; †) Ven. Joseph of Văratec; Martyr Diomedes' },
+  "08-16": { ro: 'Aducerea Sf. Mahrame a Domnului din Edesa la Constantinopol; †) Sf. Martiri Brâncoveni: Constantin Voievod cu cei patru fiii ai săi, Constantin, tefan, Radu și Matei, și sfetnicul Ianache; †) Sf. Cuv. Iosif de la Văratec; Sf. Mc. Diomid', en: 'Translation of the Icon Not-Made-by-Hands of our Lord from Edessa to Constantinople; †) Martyrs Constantin Brâncoveanu & his sons: Constantin, Stephen, Radu, Matthew and the Counselor Ianache; †) Ven. Joseph of Văratec; Martyr Diomedes' },
   "08-17": { ro: '†) Sf. Gheorghe Pelerinul; † Sf. Cuv. Nazaria, Olimpiada și Elisabeta (Safta) Brâncoveanu, de la Văratec; Sf. Mc. Miron preotul, Straton și Ciprian', en: '†) St. George the Pilgrim; † Ven. Nazaria, Olympiada, and Elisabeta (Safta) Brâncoveanu, of Varatec; Martyrs Myron the priest, Straton and Cyprian' },
   "08-18": { ro: 'Sf. Mc. Flor și Lavru', en: 'Martyrs Florus and Laurus' },
   "08-19": { ro: 'Sf. Mc. Andrei Stratilat, Timotei, Agapie și Tecla', en: 'Martyrs Andrew the General; Timothy, Agapius and Thecla' },
@@ -512,7 +313,7 @@ const DAY_SAINTS = {
   "11-08": { ro: '†) Soborul Sf. Arhangheli Mihail și Gavriil și al tuturor cereștilor puteri', en: '†) Synaxis of the Archangels Michael and Gabriel and all the heavenly powers' },
   "11-09": { ro: '†) Sf. Ier. Nectarie de la Eghina; Sf. Mc. Claudiu, Castor, Sempronian și Nicostrat; Sf. Mc. Onisifor și Porfirie; Sf. Cuv. Matrona', en: '†) Holy Hierarch Nectarios of Aegina; Martyrs Claudius, Castor, Sempronian and Nicostratus; Martyrs Onesiphoros and Porphyrios; Ven. Matrona' },
   "11-10": { ro: 'Sf. Ap. Olimp, Rodion, Sosipatru, Erast, Ter iu și Cvart; †) Sf. Cuv. Mc. Visarion de la Lainici', en: 'Apostles Rodion, Sosipater, Olympas, Erastos, Tertius and Quartus; †) Ven. Martyr Vissarion of Lainici Monastery' },
-  "11-11": { ro: '† Sf. Mare Mc. Mina; Sf. Mc. Victor, Vichentie și Ștefanida; Sf. Cuv. Teodor Studitul', en: '† Great-Martyr Menas; Martyrs Victor, Vincent & Stephanida; Ven. Theodore the Studite' },
+  "11-11": { ro: '† Sf. Mare Mc. Mina; Sf. Mc. Victor, Vichentie și tefanida; Sf. Cuv. Teodor Studitul', en: '† Great-Martyr Menas; Martyrs Victor, Vincent & Stephanida; Ven. Theodore the Studite' },
   "11-12": { ro: '†) Sf. Martiri și Mărturisitori N s udeni: Atanasie Todoran din Bichigiu, Vasile din Mocod, Grigorie din Zagra și Vasile din Telciu; Sf. Ier. Ioan cel Milostiv, patriarhul Alexandriei; Sf. Cuv. Nil Pustnicul', en: '†) Martyrs and Confessors of N s ud: Athanasius, Basil, Gregory and Basil; Holy Hierarch John the Merciful, patriarch of Alexandria; Ven. Nilus the hermit' },
   "11-13": { ro: '†) Sf. Ier. Ioan Gură de Aur, arhiepiscopul Constantinopolului, și mama sa, Sf. Antuza', en: '†) Holy Hierarch John Chrysostom, archbishop of Constantinople and his mother, St. Anthusa' },
   "11-14": { ro: '†) Sf. Ap. Filip, unul dintre cei 12 Apostoli; Sf. Ier. Grigorie Palama, arhiepiscopul Tesalonicului', en: '† Apostle Philip of the 12 Apostles; Holy Hierarch Gregory Palamas, archbishop of Thessalonica' },
@@ -529,7 +330,7 @@ const DAY_SAINTS = {
   "11-25": { ro: '† Sf. Mare Mc. Ecaterina; Sf. Mare Mc. Mercurie (Odovania praznicului Intrării în Biserică a Maicii Domnului) (U,V)', en: '† Great-Martyr Catherine; Great-Martyr Mercurius (Leave-taking of Entrance of Birthgiver of God in Temple) (W,O)' },
   "11-26": { ro: 'Sf. Cuv. Alipie Stâlpnicul, Nicon și Stelian Paflagonul (U,V)', en: 'Ven. Alypius the Stylite, Nikon and Stylianus of Paphlagonia (W,O)' },
   "11-27": { ro: 'Sf. Mare Mc. Iacob Persul; Sf. Cuv. Natanael și Pinufrie (U,V)', en: 'Great-Martyr James the Persian; Ven. Nathaniel and Pinoufrius (W,O)' },
-  "11-28": { ro: '†) Sf. Cuv. Mărturisitor Arsenie de la Prislop; Sf. Cuv. Mc. Ștefan cel Nou; Sf. Mc. Irinarh (P,U,V)', en: '†) Ven. Confessor Arsenie of Prislop; Venerable- martyr Stephen the New; Martyr Irenarchus (F,W,O)' },
+  "11-28": { ro: '†) Sf. Cuv. Mărturisitor Arsenie de la Prislop; Sf. Cuv. Mc. tefan cel Nou; Sf. Mc. Irinarh (P,U,V)', en: '†) Ven. Confessor Arsenie of Prislop; Venerable- martyr Stephen the New; Martyr Irenarchus (F,W,O)' },
   "11-29": { ro: 'Sf. Mc. Paramon și Filumen; Sf. Cuv. Pitirun (P,U,V)', en: 'Martyrs Paramon & Philoumenus; Ven. Pitirim (F,W,O)' },
   "11-30": { ro: '†) Sf. Ap. Andrei, cel întâi chemat, Ocrotitorul României; †) Sf. Ier. Andrei aguna, mitropolitul Transilvaniei; † Sf. Cuv. Sebastian (Dabovich); Sf. Ier. Frumentie, episcopul Etiopiei (P,U,V)', en: '†) Holy Apostle Andrew the first-called, Protector of Romania; †) Holy Hierarch Andrei aguna, metropolitan of Transylvania; † Ven. Sebastian (Dabovich); Holy Hierarch Frumentius, bishop of Ethiopia (F,W,O)' },
   "12-01": { ro: '† Sf. Anastasia, mama Sf. Ier. Andrei aguna; Sf. Proroc Naum; Sf. Cuv. Filaret cel Milostiv (P,U,V)', en: '† St. Anastasia, mother of Holy Hierarch Andrei aguna; Prophet Nahum; Ven. Philaret the Merciful (F,W,O)' },
@@ -556,19 +357,19 @@ const DAY_SAINTS = {
   "12-22": { ro: '†) Sf. Ier. Petru Movil , mitropolitul Kievului; Sf. Mare Mc. Anastasia', en: '†) Holy Hierarch Peter Mogila, metropolitan of Kiev; Great-Martyr Anastasia' },
   "12-23": { ro: '† Sf. Cuv. Antonina de la Tismana; Sfinții 10 Mucenici din Creta; Sf. Ier. Pavel, arhiep. Neocezareei', en: '† Ven. Antonina of Tismana Monastery; 10 Martyrs of Crete; Holy Hierarch Paul, archbishop of Neocaesarea' },
   "12-24": { ro: 'Sf. Cuv. Mc. Eugenia (Ajunul Crăciunului)', en: 'Ven. Nun-Martyr Eugenia (Christmas Eve)' },
-  "12-25": { ro: '(†) Nașterea Domnului și Dumnezeului și Mântuitorului nostru Iisus Hristos (Crăciunul. Fără post)', en: '(†) Birth of our Lord, God & Savior Jesus Christ (Fast free)' },
+  "12-25": { ro: '(†) Nașterea Domnului și Dumnezeului și Mântuitorului nostru Iisus Hristos (Crăciunul. harți)', en: '(†) Birth of our Lord, God & Savior Jesus Christ (Fast free)' },
   "12-26": { ro: '†) Soborul Maicii Domnului; †) Sf. Cuv. Nicodim cel Sfințit de la Tismana; †) Sf. Cuv. Mc. Gherasim de la Tismana; Sf. Sfințit Mc. Eftimie, ep. Sardei', en: '†) Synaxis of the Most Holy Birthgiver of God; †) Ven. Nicodemus of Tismana Monastery; †) Ven. Martyr Gerasimus of Tismana Monastery; Hieromartyr Euthymius the Confessor, bp of Sardis' },
-  "12-27": { ro: '† Sfântul Ap., întâiul Mc. și Arhidiacon Ștefan; Sf. Cuv. Teodor', en: '† Apostle and Protomartyr Stephen the Archdeacon; Ven. Theodore the Confessor' },
+  "12-27": { ro: '† Sfântul Ap., întâiul Mc. și Arhidiacon tefan; Sf. Cuv. Teodor', en: '† Apostle and Protomartyr Stephen the Archdeacon; Ven. Theodore the Confessor' },
   "12-28": { ro: 'Sfinții 20.000 de Mucenici din Nicomidia', en: '20,000 Martyrs of Nicomedia' },
   "12-29": { ro: 'Sfinții 14.000 de prunci uci și din porunca lui Irod; Sf. Cuv. Marcel și Tadeu', en: '14,000 Infants (Holy Innocents) slain by Herod; Ven. Marcellus and Thaddeus' },
-  "12-30": { ro: 'Sf. Mc. Anisia fecioara; Sf. Cuv. Teodora; Sf. Cuv. Leon (Fără post)', en: 'Virgin-martyr Anysia; Ven. Theodora; Ven. Leo (Fast free)' },
+  "12-30": { ro: 'Sf. Mc. Anisia fecioara; Sf. Cuv. Teodora; Sf. Cuv. Leon (harți)', en: 'Virgin-martyr Anysia; Ven. Theodora; Ven. Leo (Fast free)' },
   "12-31": { ro: '† Sf. Mc. Hermes; Sf. Cuv. Melania Romana; Sf. Teofilact din Ohrid (Odovania praznicului Nașterii Domnului. Slujba din noaptea trecerii dintre ani)', en: 'Martyr Hermes; Ven. Melania of Rome; St. Theophylactus of Ochrid (Leave-taking of Birth of Christ. Service of Thanksgiving for the new year)' },
 };
 
 const SUNDAY_READINGS = {
   "01-04": { ro: 'Duminica dinaintea Botezului Domnului. Ap. 2 Timotei 4, 5-8; Ev. Marcu 1, 1-8; (Predica Sfântului Ioan Botezătorul). Glas 5, voscr. 8.', en: 'Sunday before Theophany. Epis. 2 Timothy 4:5-8; Gos. Mark 1:1-8 (The Preaching of St. John the Baptist). Tone 5. Mat. Gos. 8.' },
   "01-11": { ro: 'Duminica după Botezul Domnului. Ap. Efeseni 4, 7- 13; Ev. Matei 4, 12-17 (Începutul propovăduirii Domnului). Glas 6, voscr. 9.', en: 'Sunday after Theophany. Epis. Ephesians 4:7-13; Gos. Matthew 4:12-17 (Beginning of the Lord\'s ministry). Tone 6. Mat. Gos. 9.' },
-  "01-18": { ro: 'Duminica a 29-a după Rusalii. Ap. Duminicii a 28-a: Coloseni 1, 12-18; Ev. Luca 17, 12-19 (Vindecarea celor 10 leproși). Glas 7, voscr. 10.', en: '29th Sunday after Pentecost. Epis. of the 28th Sunday: Colossians 1:12-18; Gos. Luke 17:12-19 (Ten lepers). Tone 7. Mat. Gos. 10.' },
+  "01-18": { ro: 'Duminica a 29-a după Rusalii. Ap. Duminicii a 28- a: Coloseni 1, 12-18; Ev. Luca 17, 12-19 (Vindecarea celor 10 leproși). Glas 7, voscr. 10.', en: '29th Sunday after Pentecost. Epis. of the 28th Sunday: Colossians 1:12-18; Gos. Luke 17:12-19 (Ten lepers). Tone 7. Mat. Gos. 10.' },
   "01-25": { ro: 'Duminica a 32-a după Rusalii (a lui Zaheu). Ap. 1 Timotei 4, 9-15; Ev. Luca 19, 1-10. Glas 8, voscr. 11.', en: '32nd Sunday after Pentecost (Zacchaeus). Epis. 1 Timothy 4:9-15; Gos. Luke 19:1-10. Tone 8. Mat. Gos. 11.' },
   "02-01": { ro: 'Duminica a 33-a după Rusalii (a Vameșului și a Fariseului). Ap. 2 Timotei 3, 10-15; Ev. Luca 18, 10- 14. Glas 1, voscr. 1. (Începutul Triodului)', en: '33rd Sunday after Pentecost (Publican and the Pharisee). Epis. 2 Timothy 3:10-15; Gos. Luke 18:10-14. Tone 1. Mat. Gos. 1. (Triodion begins)' },
   "02-08": { ro: 'Duminica a 34-a după Rusalii (a Întoarcerii Fiului risipitor). Ap. 1 Corinteni 6, 12-20; Ev. Luca 15, 11-32. Glas 2, voscr. 2.', en: '34th Sunday after Pentecost (Prodigal Son). Epis. 1 Corinthians 6:12-20; Gos. Luke 15:11-32. Tone 2. Mat. Gos. 2.' },

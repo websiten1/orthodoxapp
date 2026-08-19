@@ -34,15 +34,19 @@ function rankLabel(r){var m={pascha:"Great Feast",great:"Great Feast",feast:"Fea
 function fbClass(l){var m={free:"free",oil:"oil",fish:"fish",strict:"strict",lent:"lent"};return m[l]||"free";}
 function todayFeast(){return Liturgical.feastFor(dstr(today),state.mode);}
 function todayFast(){return Liturgical.fasting(dstr(today),state.mode);}
-function feastLabel(f){return f?(state.lang==="en"?f.name_en:f.name_ro):T("Memory of the saints of the day","Pomenirea sfinților zilei");}
+function daySaints(iso){return Liturgical.daySaints(iso,state.mode);}
+function sundayReading(iso){return Liturgical.sundayReading(iso,state.mode);}
+function feastLabel(f,ds){if(f)return state.lang==="en"?f.name_en:f.name_ro;if(ds)return state.lang==="en"?ds.en:ds.ro;return T("Memory of the saints of the day","Pomenirea sfinților zilei");}
 function screenToday(){
-  var f=todayFeast();var fs=todayFast();var h="";
+  var iso=dstr(today);var f=todayFeast();var fs=todayFast();var ds=daySaints(iso);var h="";
   h+='<div class="today-hero"><div class="today-greet">'+esc(greeting())+'</div><div class="today-day">'+esc(fmtDayName()+" - "+fmtDayNum())+"</div></div>";
   h+='<div class="prayer-card" data-open="prayer"><div><div class="eyebrow">'+T("Today's Prayer","Rugăciunea zilei")+'</div><h3>'+T("Our Father","Tatăl nostru")+'</h3><p>'+T("The Lord's Prayer, the prayer of every Christian home.","Rugăciunea Domnului, rugăciunea fiecărei case creștine.")+'</p><span class="kbd">'+T("Read the prayer","Citește rugăciunea")+" "+ic("chev")+"</span></div></div>";
   h+='<div class="section-title">'+T("Today's Orthodox Life","Viața ortodoxă de azi")+"</div>";
-  h+='<div class="ort-card"><div class="ort-row"><b>'+esc(feastLabel(f))+"</b>"+(f?'<span class="tag">'+esc(rankLabel(f.rank))+"</span>":"")+"</div>";
-  if(f&&f.secondary&&f.secondary.length){var sec=f.secondary.map(function(s){return "<span>- "+esc(state.lang==="en"?s.name_en:s.name_ro)+"</span>";}).join("");h+='<div class="ort-sub">'+sec+"</div>";}
+  h+='<div class="ort-card"><div class="ort-row"><b>'+esc(feastLabel(f,ds))+"</b>"+(f?'<span class="tag">'+esc(rankLabel(f.rank))+"</span>":"")+"</div>";
+  if(f&&ds){h+='<div class="ort-sub"><span>'+esc(state.lang==="en"?ds.en:ds.ro)+"</span></div>";}
+  else if(f&&f.secondary&&f.secondary.length){var sec=f.secondary.map(function(s){return "<span>- "+esc(state.lang==="en"?s.name_en:s.name_ro)+"</span>";}).join("");h+='<div class="ort-sub">'+sec+"</div>";}
   h+='<div class="divider"></div><div class="ort-row"><span class="kbd">'+T("Fasting","Post")+'</span><span class="fastbadge '+fbClass(fs.level)+'">'+esc((state.lang==="en")?fs.note_en:fs.note_ro)+"</span></div>";
+  if(f||ds){h+='<div class="divider"></div><div class="row" data-open="syn" data-iso="'+esc(iso)+'" style="cursor:pointer"><span class="kbd">'+T("Read the Synaxarion","Citește Sinaxarul")+" "+ic("chev")+"</span></div>";}
   h+="</div>";
   h+='<div class="section-title">'+T("From His Grace","Cuvântul Ierarhului")+"</div>";
   h+='<div class="list">'+MESSAGES.slice(0,2).map(msgCard).join("")+"</div>";
@@ -278,9 +282,17 @@ function synaxShort(f){
   :"Biserica pomenește astăzi "+feastLabel(f)+". În Sinaxarul zilei se păstrează amintirea sfântului, semnificația praznicului și învățătura duhovnicească transmisă din generație în generație.";
   return txt;
 }
-function openSynaxarion(feastName){
-  openSheet('<div class="grab"></div><div class="eyebrow">'+T("Synaxarion of the Day","Sinaxarul zilei")+'</div><h2>'+esc(feastName||"Saint of the day")+'</h2><div class="reader dropcap">'+esc("Saint of the day, patron and example for us. May we follow the faith and witness of the blessed ones, striving to glorify God in our own lives.")+'</div><button class="btn primary block" id="clSyn">'+esc(T("Close","Închide"))+"</button>");
-  var b=document.getElementById("symSyn");b=b||document.getElementById("symSyn");
+function openSynaxarion(iso){
+  iso=iso||dstr(today);
+  var f=Liturgical.feastFor(iso,state.mode);
+  var ds=daySaints(iso);
+  var sr=sundayReading(iso);
+  var title=f?(state.lang==="en"?f.name_en:f.name_ro):T("Saint of the Day","Sfântul zilei");
+  var body=ds?(state.lang==="en"?ds.en:ds.ro):T("No commemoration on record for this day yet.","Nu avem încă pomenirea acestei zile.");
+  var h='<div class="grab"></div><div class="eyebrow">'+T("Synaxarion of the Day","Sinaxarul zilei")+'</div><h2>'+esc(title)+'</h2><div class="reader dropcap">'+esc(body)+'</div>';
+  if(sr){h+='<div class="divider"></div><div class="eyebrow">'+T("Epistle · Gospel","Apostol · Evanghelia")+'</div><p class="sub">'+esc(state.lang==="en"?sr.en:sr.ro)+'</p>';}
+  h+='<button class="btn primary block" id="clSyn">'+esc(T("Close","Închide"))+"</button>";
+  openSheet(h);
   var q=document.getElementById("clSyn");if(q){q.onclick=closeSheet;}
 }
 const CREED_EN=[
@@ -329,7 +341,7 @@ function wireCardClicks(){
   $$("[data-open]").forEach(function(el){el.onclick=function(){var o=el.getAttribute("data-open");var id=el.getAttribute("data-id");
     if(o==="message"){openMessage(id);}
     else if(o==="prayer"||o==="prayers"){openPrayers();}
-    else if(o==="syn"){var f=todayFeast();openSynaxarion((f&&(state.lang==="en"?f.name_en:f.name_ro))||"Saint of the day");}
+    else if(o==="syn"){openSynaxarion(el.getAttribute("data-iso"));}
     else if(o==="profile"){openProfile();}
     else if(o==="donate"){openDonate();}
     else if(o==="nameDay"){openMore();}
@@ -368,11 +380,15 @@ function screenCalendar(){
     h+="</div></div>";
     var f=cells.filter(function(c){return c&&c.iso===sel;})[0];
     var feast=(f&&f.feast)||null;
+    var selIso=new Date(sel).toISOString();
+    var ds=daySaints(selIso);
+    var sr=sundayReading(selIso);
     h+='<div class="syn-card"><img src="assets/saint-icon.jpg" class="syn-icon" alt="">';
     h+='<div style="flex:1"><div class="eyebrow">'+esc(T("Saint of the Day","Sfântul zilei"))+"</div>";
-    h+='<b>'+esc(feast?(state.lang==="en"?feast.name_en:feast.name_ro):T("Memory of the saints","Pomenirea sfinților"))+"</b>";
-    h+='<p>'+esc(feast?(state.lang==="en"?feast.name_en:feast.name_ro):"")+"</p>";
-    h+='<button class="btn primary block" data-open="syn">'+esc(T("Read the Synaxarion","Citește Sinaxarul"))+"</button></div></div>";
+    h+='<b>'+esc(feastLabel(feast,ds))+"</b>";
+    if(feast&&ds){h+='<p>'+esc(state.lang==="en"?ds.en:ds.ro)+"</p>";}
+    if(sr){h+='<div class="divider"></div><div class="eyebrow">'+T("Epistle · Gospel","Apostol · Evanghelia")+'</div><p class="sub">'+esc(state.lang==="en"?sr.en:sr.ro)+"</p>";}
+    h+='<button class="btn primary block" data-open="syn" data-iso="'+esc(selIso)+'">'+esc(T("Read the Synaxarion","Citește Sinaxarul"))+"</button></div></div>";
     return h;
   }catch(err){return '<div class="screen"><div class="card"><p>'+esc(String(err&&err.message||err))+"</p></div></div>";}
 }
