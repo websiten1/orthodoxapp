@@ -10,11 +10,23 @@ the existing design; make incremental improvements; never redesign from scratch.
    cross is needed, keep it subtle and Romanian-Byzantine in taste.
 3. **Names:** the ruling bishop is **His Grace Bishop Nathaniel**; the Vicar Bishop
    is **Bishop Andrei**. Never use "Nicolae".
-4. **Identity:** white/ivory backgrounds, deep navy + light blue accents (default
-   theme) OR rich **burgundy** (Burgundy theme). Red only for first-letter accents.
-   No gold/cream-brown, no neon, no pill-shaped generic template badges.
-5. **Institutional, not playful:** serif editorial headings, restrained
-   ornamentation, high-quality photography, no gamification (no streaks etc.).
+4. **Identity:** warm ivory backgrounds, deep navy + sage green + warm gold +
+   red accents (default theme) OR rich **burgundy** (Burgundy theme). Red mainly
+   for first-letter/feast accents. Cards use soft rounded corners (`--r-lg`/`--r-md`)
+   and tinted colored backgrounds (`--tint-blue`/`--tint-sage`/`--tint-gold`/
+   `--tint-red`) with a soft shadow instead of flat black hairline borders — this
+   was corrected after a 2026-08-19 redesign went too far into a stark, all-square,
+   black-hairline-everywhere look and the client explicitly said it "lost
+   personality" and felt like "a mess." Do not regress to that look: institutional
+   does not mean monochrome or square. Pill-shaped colored badges (fasting status,
+   tags) are wanted, not banned — keep them tasteful (soft tints, not saturated).
+5. **Institutional AND warm/welcoming — not a tradeoff.** Serif editorial
+   headings, high-quality photography, no gamification (no streaks etc.), but
+   also: generous rounded geometry, colorful tinted card surfaces, a colorful
+   hero block on Today (not a plain white/bordered box), and few ruled hairline
+   dividers — prefer spacing and card separation over lines. "Institutional" is
+   the register (serif type, restrained language, real content), not an excuse
+   for a cold, ruled, colorless layout.
 6. **Navigation is fixed:** Calendar · News · **Today** (center) · Youth · Parishes.
    Today = greeting + date, Prayer card (Our Father), "Today's Orthodox Life" card,
    From His Grace.
