@@ -1,0 +1,4 @@
+<button class="tab tab-center" data-route="today"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2"/></svg><span>Today</span></button>
+      <button class="tab" data-route="youth"><svg viewBox="0 0 24 24"><path d="M12 3l2.1 5.6L20 11l-5.9 2.4L12 19l-2.1-5.6L4 11l5.9-2.4z"/></svg><span>Youth</span></button>
+      <button class="tab" data-route="parishes"><svg viewBox="0 0 24 24"><path d="M12 3l8 5v13h-5v-7H9v7H4V8z"/><circle cx="12" cy="10" r="1.6"/></svg><span>Parishes</span></button>
+    </nav>

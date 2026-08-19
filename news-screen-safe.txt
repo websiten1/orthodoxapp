@@ -1,0 +1,19 @@
+function screenNews(){
+  const mag = MAGAZINE.map(z=>({type:'me',id:z.id,title:z.label,meta:z.year + ' · ' + z.issue,body_en:z.subtitle,body_ro:z.subtitle_ro}));
+  const all = [...MESSAGES.map(m=>({type:'me',id:m.id,title:m.title||m.title_en,meta:''+(m.author||''),title_ro:m.title_ro,body_en:m.body_en,body_ro:m.body_ro,icon:m.icon,tags:m.tags||[],occasion:m.occasion,has_video:m.has_video,dur:m.dur||'2:40'})), ...mag];
+  all.sort((a,b)=>a.id.localeCompare(b.id));
+  return '' +
+    '    <h1 class="screen-title">' + T('News','Noutăți') + '</h1>\n' +
+    '    <p class="sub">' + T('From His Grace’s Word and the Solia journal.','Cuvântul Ierarhului și revista Solia.') + '</p>\n' +
+    '    <div class="seg">' +
+      '<button class="'+(state.msgFilter==='All'?'active':'')+'" data-msgf="All">All</button>' +
+      '<button class="'+(state.msgFilter==='Pastoral'?'active':'')+'" data-msgf="Pastoral">'+T('Pastoral')+'</button>' +
+      '<button class="'+(state.msgFilter==='Synodal'?'active':'')+'" data-msgf="Synodal">'+T('Synodal')+'</button>' +
+      '<button class="'+(state.msgFilter==='Video'?'active':'')+'" data-msgf="Video">'+T('Video')+'</button>' +
+      '<button class="'+(state.msgFilter==='Feast'?'active':'')+'" data-msgf="Feast">'+T('Feast')+'</button>\n' +
+    '    </div>\n' +
+    '    <div class="searchbar">'+ic('search')+'<input id="msgQ" placeholder="'+T('Search…','Caută…')+'"></div>\n' +
+    '    <div class="list">'+all.map(m=>msgCard(m)).join('')+'</div>\n' +
+    '  </div>\n' +
+    '  </div>';
+}

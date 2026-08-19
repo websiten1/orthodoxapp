@@ -1,0 +1,35 @@
+/* ====== ROEA institutional layer ====== */
+em .screen-title{font-family:var(--serif);font-size:24px;font-weight:700;letter-spacing:.01em;color:var(--navy)}
+em .sub{color:var(--muted);font-size:13px;margin-top:2px}
+em .eyebrow{font-family:var(--sans);font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);display:flex;align-items:center;gap:8px}
+em .eyebrow::after{content:"";flex:1;height:1px;background:var(--line)}
+em .card{background:var(--ice);border:1px solid var(--line);border-radius:10px;padding:16px;box-shadow:none}
+em .card.pad0{padding:8px}
+em .divider{height:1px;background:var(--line);margin:10px 0}
+em .row{display:flex;align-items:center;gap:12px}
+em .tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:9px 0 7px;color:#b7c8e5;border-radius:6px;border:1px solid transparent}
+em .tab svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round}
+em .tab span{font-size:9.5px;font-weight:800;letter-spacing:.02em}
+em .tab.active{color:var(--navy);background:var(--ice);border-color:var(--line)}
+em .tab.active svg{stroke-width:2.2}
+em .tab.tab-center{transform:translateY(-2px);background:linear-gradient(150deg,var(--navy),var(--blue));color:#fff;box-shadow:0 16px 30px -14px rgba(18,58,122,.5);border-color:transparent}
+em .tab.tab-center span{font-weight:900;letter-spacing:.06em}
+em #tabbar{background:#fff;border-top:1px solid #d5dff2;border-radius:14px 14px 0 0;justify-content:center;gap:2px;padding:4px 4px calc(2px + var(--safe-b))}
+em #tabbar .tab{border-radius:10px}
+em .today-hero{margin:0 0 14px;padding:18px;border-radius:8px;background:linear-gradient(120deg,#fdfcf7,#f7f1e3);border:1px solid #e8dfc8;color:var(--navy);position:relative;overflow:hidden}
+em .today-hero .cross-ornament{position:absolute;right:-18px;top:-18px;width:96px;height:96px;opacity:.06;background:radial-gradient(circle,#b3984a,transparent 70%)}
+em .today-greet{font-family:var(--serif);font-size:23px;font-weight:700;letter-spacing:.005em}
+em .today-day{margin-top:4px;font-family:var(--sans);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:#7a7155;font-weight:700}
+em .today-feast{margin-top:10px;font-family:var(--serif);font-size:17px;font-weight:700}
+em .prayer{margin-top:16px;padding-top:14px;border-top:1px solid #e5dcc0}
+em .quote{border-left:2px solid #c8b98a;padding:3px 0 3px 12px;margin:12px 0;font-style:italic;color:#6e5f3a}
+em .section-title{margin:22px 0 8px;font-family:var(--sans);font-size:10.5px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);display:flex;align-items:center;gap:10px}
+em .section-title::after{content:"";flex:1;height:1px;background:var(--line)}
+em .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 18px;border-radius:9px;font-weight:800;font-size:14px}
+em .btn.primary{background:linear-gradient(110deg,var(--navy),var(--blue));color:#fff}
+em .btn.block{width:100%}
+em .kbd{font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:rgba(99,92,63,.55);padding:3px 8px;border-radius:99px}
+em /* sharpen tags from pills to institutional labels */
+em .chip{border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:3px;font-size:9px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px}
+em .tag{border:1px solid var(--line);border-radius:3px;background:transparent;color:var(--blue);font-size:9px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:2px 7px}
+em .tag.occasion{color:var(--aqua-ink)}

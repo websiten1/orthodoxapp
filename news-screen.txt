@@ -1,0 +1,16 @@
+function screenNews(){
+  const list = [...MESSAGES, ...MAGAZINE.map(z=>({type:'fe',id:z.id,label:z.label,meta:z.year+' · '+z.issue,title_en:z.subtitle,title_ro:z.label_ro}))].sort((a,b)=>b.date<a.date?1:-1);
+  return `
+    <h1 class="screen-title">${T('News','Nout')}</h1>
+    <p class="sub">${T('From the Solia journal and the Word of His Grace.','Din revista Solia și cuvântul Ierarhului.')}</p>
+    <div class="seg">
+      <button class="${state.msgFilter==='All'?'active':''}" data-msgf="All">All</button>
+      <button class="${state.msgFilter==='Pastoral'?'active':''}" data-msgf="Pastoral">${T('Pastoral')}</button>
+      <button class="${state.msgFilter==='Synodal'?'active':''}" data-msgf="Synodal">${T('Synodal')}</button>
+      <button class="${state.msgFilter==='Video'?'active':''}" data-msgf="Video">${T('Video')}</button>
+      <button class="${state.msgFilter==='Feast'?'active':''}" data-msgf="Feast">${T('Feast')}</button>
+    </div>
+    <div class="searchbar">${ic('search')}<input id="msgQ" placeholder="${T('Search…','Caută…')}"></div>
+    <div class="list">${list.map(m=>msgCard(m)).join('')}</div>
+  `;
+}
