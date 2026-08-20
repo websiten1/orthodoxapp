@@ -330,39 +330,63 @@ body.route-today #tabbar{background:#000;box-shadow:none}
 body.route-today .tab{color:#AEAEB2}
 body.route-today .tab.active,body.route-today .tab.tab-center.active{color:#fff;background:transparent}
 
-body.route-today .dhero{position:relative;margin:0 0 18px;border-radius:0 0 var(--r-lg) var(--r-lg);overflow:hidden;height:38vh;min-height:260px}
+body.route-today .dhero{position:relative;margin:0 0 28px;border-radius:0 0 var(--r-lg) var(--r-lg);overflow:hidden;height:46vh;min-height:320px}
 body.route-today .dhero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-body.route-today .dhero::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,.55) 100%)}
+body.route-today .dhero::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,.45) 100%)}
 body.route-today .dhero-header{position:absolute;top:14px;left:16px;right:16px;z-index:2;display:flex;align-items:center;justify-content:space-between}
-body.route-today .dhero-avatar{position:relative;overflow:hidden;width:44px;height:44px;border-radius:var(--r-pill);background:#fff;display:flex;align-items:center;justify-content:center;padding:8px;box-shadow:0 2px 10px rgba(0,0,0,.35)}
+body.route-today .dhero-header-left{display:flex;align-items:center;gap:12px;min-width:0}
+body.route-today .dhero-avatar{position:relative;overflow:hidden;flex:none;width:44px;height:44px;border-radius:var(--r-pill);background:#fff;display:flex;align-items:center;justify-content:center;padding:8px;box-shadow:0 2px 10px rgba(0,0,0,.35)}
 body.route-today .dhero-avatar img{width:100%;height:100%;object-fit:contain}
-body.route-today .dhero-action{position:relative;width:44px;height:44px;border-radius:var(--r-pill);background:rgba(44,44,46,.72);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;color:#fff}
+body.route-today .dhero-pill{display:flex;align-items:center;gap:8px;height:40px;padding:0 16px;border-radius:var(--r-pill);background:rgba(44,44,46,.72);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);color:#fff;min-width:0}
+body.route-today .dhero-pill .ic{width:16px;height:16px;flex:none}
+body.route-today .dhero-pill span{font-family:var(--caps);font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body.route-today .dhero-action{position:relative;flex:none;width:44px;height:44px;border-radius:var(--r-pill);background:rgba(44,44,46,.72);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;color:#fff}
 body.route-today .dhero-action .ic{width:20px;height:20px}
 body.route-today .dhero-dot{position:absolute;top:8px;right:8px;width:8px;height:8px;border-radius:50%;background:#FF3B30}
-body.route-today .dhero-content{position:absolute;left:16px;right:16px;bottom:22px;z-index:2}
+body.route-today .dhero-content{position:absolute;left:16px;right:16px;bottom:24px;z-index:2;display:flex;flex-direction:column;align-items:center;text-align:center}
 body.route-today .dhero-title{font-family:var(--display);font-size:26px;font-weight:400;color:#fff;line-height:1.15}
 body.route-today .dhero-sub{margin-top:6px;font-family:var(--caps);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.78)}
+body.route-today .dhero-cta{margin-top:16px;display:inline-flex;align-items:center;justify-content:center;height:44px;padding:0 24px;border-radius:var(--r-pill);background:rgba(44,44,46,.72);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);color:#fff;font-family:var(--caps);font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+body.route-today .dhero-dots{margin-top:14px;display:flex;align-items:center;gap:6px}
+body.route-today .dhero-dots span{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.4)}
+body.route-today .dhero-dots span.dot-active{width:18px;height:6px;border-radius:var(--r-pill);background:#fff}
 
-body.route-today .section-title{color:#AEAEB2}
-body.route-today .prayer-card{background:#1C1C1E;box-shadow:none}
-body.route-today .prayer-card h3{color:#fff}
-body.route-today .prayer-card p{color:#AEAEB2}
-body.route-today .prayer-air{background:#C9A227;color:#fff}
-body.route-today .ort-card{background:#1C1C1E;box-shadow:none}
-body.route-today .ort-row b{color:#fff}
-body.route-today .ort-sub{color:#AEAEB2}
-body.route-today .kbd{background:#2C2C2E;color:#fff}
-body.route-today .tag{background:#2C2C2E;color:#AEAEB2}
+body.route-today .dsearch{display:flex;align-items:center;gap:12px;margin:0 0 28px}
+body.route-today .dsearch-field{flex:1;min-width:0;height:52px;border-radius:var(--r-pill);background:#1C1C1E;display:flex;align-items:center;gap:12px;padding:0 16px;color:#AEAEB2}
+body.route-today .dsearch-field .ic{flex:none;width:20px;height:20px}
+body.route-today .dsearch-field input{flex:1;min-width:0;background:none;border:none;outline:none;color:#fff;font-family:var(--serif);font-size:16px}
+body.route-today .dsearch-field input::placeholder{color:#AEAEB2}
+body.route-today .dsearch-mic{flex:none;width:52px;height:52px;border-radius:var(--r-pill);background:#1C1C1E;display:flex;align-items:center;justify-content:center;color:#AEAEB2}
+body.route-today .dsearch-mic .ic{width:20px;height:20px}
+
+body.route-today .dsection-title{margin:0 0 16px;font-family:var(--sans);font-size:22px;font-weight:700;color:#fff}
+
+body.route-today .dcarousel{display:flex;gap:12px;overflow-x:auto;margin:0 -18px 28px;padding:0 18px;scroll-snap-type:x mandatory;scrollbar-width:none;-ms-overflow-style:none}
+body.route-today .dcarousel::-webkit-scrollbar{display:none}
+
+body.route-today .dcard{flex:0 0 88%;scroll-snap-align:start;background:#1C1C1E;border-radius:var(--r-lg);padding:20px;cursor:pointer}
+body.route-today .dcard .cardTitle{font-family:var(--serif);font-size:18px;font-weight:600;color:#fff}
+body.route-today .dcard .cardSubtext{margin-top:8px;font-size:14px;color:#AEAEB2}
+body.route-today .dcardIconRow{margin-top:16px;display:flex;align-items:center;gap:16px}
+body.route-today .dIconSquare{flex:none;width:56px;height:56px;border-radius:var(--r-md);background:#C9A227;display:flex;align-items:center;justify-content:center;color:#fff}
+body.route-today .dIconSquare .ic{width:24px;height:24px}
+body.route-today .dIconText{font-size:15px;color:#fff;min-width:0}
+
+body.route-today .dcardVisited{flex:0 0 70%;scroll-snap-align:start;background:#1C1C1E;border-radius:var(--r-lg);padding:20px;cursor:pointer}
+body.route-today .dvisitedThumb{width:100%;height:100px;border-radius:12px;object-fit:cover;display:block;background:#2C2C2E}
+body.route-today .dvisitedTitle{margin-top:12px;font-family:var(--serif);font-size:18px;font-weight:600;color:#fff}
+
 body.route-today .fastbadge{background:#2C2C2E}
 body.route-today .fastbadge.free{color:#8fbf7a}
 body.route-today .fastbadge.oil{color:#C9A227}
 body.route-today .fastbadge.fish{color:#7fb3e0}
 body.route-today .fastbadge.strict{color:#e26a6a}
 body.route-today .fastbadge.lent{color:#b79ee0}
-body.route-today .list .item{background:#1C1C1E;box-shadow:none}
-body.route-today .item h3{color:#fff}
-body.route-today .item p{color:#AEAEB2}
-body.route-today .item .meta{color:#AEAEB2}
-body.route-today .chev{color:#AEAEB2}
-body.route-today .hier b{color:#fff}
-body.route-today .hier span{color:#AEAEB2}
+
+/* Active tab: filled icon (parish-home convention), dark mode only */
+body.route-today .tab.active svg{fill:currentColor}
+body.route-today .tab.active[data-route="calendar"] svg path{stroke:#000;stroke-width:1.4}
+body.route-today .tab.active[data-route="news"] svg,
+body.route-today .tab.active[data-route="today"] svg,
+body.route-today .tab.active[data-route="youth"] svg,
+body.route-today .tab.active[data-route="parishes"] svg{stroke:none}

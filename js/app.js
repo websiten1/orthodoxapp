@@ -37,23 +37,37 @@ function todayFast(){return Liturgical.fasting(dstr(today),state.mode);}
 function daySaints(iso){return Liturgical.daySaints(iso,state.mode);}
 function sundayReading(iso){return Liturgical.sundayReading(iso,state.mode);}
 function feastLabel(f,ds){if(f)return state.lang==="en"?f.name_en:f.name_ro;if(ds)return state.lang==="en"?ds.en:ds.ro;return T("Memory of the saints of the day","Pomenirea sfinților zilei");}
+function msgThumb(m){if(m.has_video||m.image)return m.th||"assets/featured-homily.jpg";return "assets/hero-cathedral.jpg";}
 function screenToday(){
   var iso=dstr(today);var f=todayFeast();var fs=todayFast();var ds=daySaints(iso);var h="";
+
   h+='<div class="dhero"><img src="assets/hero-cathedral.jpg" alt="">';
-  h+='<div class="dhero-header"><div class="dhero-avatar"><img src="assets/emblem.png" alt="ROEA"></div>';
-  h+='<div class="dhero-action" data-open="syn" data-iso="'+esc(iso)+'" style="cursor:pointer">'+ic("book")+((f||ds)?'<span class="dhero-dot"></span>':"")+"</div></div>";
-  h+='<div class="dhero-content"><div class="dhero-title">'+esc(greeting())+'</div><div class="dhero-sub">'+esc(fmtDayName()+" - "+fmtDayNum())+"</div></div>";
+  h+='<div class="dhero-header"><div class="dhero-header-left">';
+  h+='<div class="dhero-avatar"><img src="assets/emblem.png" alt="ROEA"></div>';
+  h+='<div class="dhero-pill">'+ic("loc")+"<span>"+T("CHANCERY","CANCELARIE")+"</span></div>";
   h+="</div>";
-  h+='<div class="prayer-card" data-open="prayer"><div><div class="eyebrow">'+T("Today's Prayer","Rugăciunea zilei")+'</div><h3>'+T("Our Father","Tatăl nostru")+'</h3><p>'+T("The Lord's Prayer, the prayer of every Christian home.","Rugăciunea Domnului, rugăciunea fiecărei case creștine.")+'</p><span class="kbd">'+T("Read the prayer","Citește rugăciunea")+" "+ic("chev")+"</span></div></div>";
-  h+='<div class="section-title">'+T("Today's Orthodox Life","Viața ortodoxă de azi")+"</div>";
-  h+='<div class="ort-card"><div class="ort-row"><b>'+esc(feastLabel(f,ds))+"</b>"+(f?'<span class="tag">'+esc(rankLabel(f.rank))+"</span>":"")+"</div>";
-  if(f&&ds){h+='<div class="ort-sub"><span>'+esc(state.lang==="en"?ds.en:ds.ro)+"</span></div>";}
-  else if(f&&f.secondary&&f.secondary.length){var sec=f.secondary.map(function(s){return "<span>- "+esc(state.lang==="en"?s.name_en:s.name_ro)+"</span>";}).join("");h+='<div class="ort-sub">'+sec+"</div>";}
-  h+='<div class="divider"></div><div class="ort-row"><span class="kbd">'+T("Fasting","Post")+'</span><span class="fastbadge '+fbClass(fs.level)+'">'+esc((state.lang==="en")?fs.note_en:fs.note_ro)+"</span></div>";
-  if(f||ds){h+='<div class="divider"></div><div class="row" data-open="syn" data-iso="'+esc(iso)+'" style="cursor:pointer"><span class="kbd">'+T("Read the Synaxarion","Citește Sinaxarul")+" "+ic("chev")+"</span></div>";}
+  h+='<div class="dhero-action" data-route="news" style="cursor:pointer">'+ic("book")+'<span class="dhero-dot"></span></div>';
   h+="</div>";
-  h+='<div class="section-title">'+T("From His Grace","Cuvântul Ierarhului")+"</div>";
-  h+='<div class="list">'+MESSAGES.slice(0,2).map(msgCard).join("")+"</div>";
+  h+='<div class="dhero-content"><div class="dhero-title">'+esc(greeting())+'</div><div class="dhero-sub">'+esc(fmtDayName()+" - "+fmtDayNum())+"</div>";
+  h+='<button class="dhero-cta" data-open="syn" data-iso="'+esc(iso)+'">'+T("Read the Synaxarion","Citește Sinaxarul")+"</button>";
+  h+='<div class="dhero-dots">'+[0,1,2,3,4].map(function(i){return '<span class="'+(i===1?"dot-active":"")+'"></span>';}).join("")+"</div>";
+  h+="</div></div>";
+
+  h+='<div class="dsearch"><div class="dsearch-field">'+ic("search")+'<input id="dtQ" placeholder="'+T("Search messages...","Caută mesaje...")+'"></div>';
+  h+='<button class="dsearch-mic" id="dtMic">'+ic("audio")+"</button></div>";
+
+  h+='<div class="dsection-title">'+T("Today's Orthodox Life","Viața ortodoxă de azi")+"</div>";
+  h+='<div class="dcarousel">';
+  h+='<div class="dcard" data-open="prayer"><div class="cardTitle">'+T("Our Father","Tatăl nostru")+'</div><div class="cardSubtext">'+T("Today's Prayer","Rugăciunea zilei")+'</div><div class="dcardIconRow"><div class="dIconSquare">'+ic("heart")+'</div><div class="dIconText">'+T("Read the prayer","Citește rugăciunea")+"</div></div></div>";
+  h+='<div class="dcard" data-open="syn" data-iso="'+esc(iso)+'"><div class="cardTitle">'+esc(feastLabel(f,ds))+'</div><div class="cardSubtext">'+(f?esc(rankLabel(f.rank)):T("Commemoration","Pomenire"))+'</div><div class="dcardIconRow"><div class="dIconSquare">'+ic("star")+'</div><div class="dIconText"><span class="fastbadge '+fbClass(fs.level)+'">'+esc((state.lang==="en")?fs.note_en:fs.note_ro)+"</span></div></div></div>";
+  h+="</div>";
+
+  h+='<div class="dsection-title">'+T("From His Grace","Cuvântul Ierarhului")+"</div>";
+  h+='<div class="dcarousel">'+MESSAGES.slice(0,4).map(function(m){
+    var lang=state.lang==="en";var title=lang?(m.title_en||m.title):(m.title_ro||m.title);
+    return '<div class="dcardVisited" data-open="message" data-id="'+m.id+'"><img class="dvisitedThumb" src="'+msgThumb(m)+'" alt=""><div class="dvisitedTitle">'+esc(title)+"</div></div>";
+  }).join("")+"</div>";
+
   return h;
 }
 function screenNews(){
@@ -160,6 +174,11 @@ function wireInline(){
   $$("[data-mode]").forEach(function(el){el.onclick=function(){state.mode=el.getAttribute("data-mode");renderList();};});
   $$("[data-msgf]").forEach(function(el){el.onclick=function(){state.msgFilter=el.getAttribute("data-msgf");renderList();};});
   var par=document.getElementById("parQ");if(par){par.oninput=function(){var q=par.value.toLowerCase();renderParishes(q);};}
+  $$(".dhero-action[data-route]").forEach(function(el){el.onclick=function(){go(el.getAttribute("data-route"));};});
+  var dtQ=document.getElementById("dtQ");
+  if(dtQ){dtQ.onkeydown=function(ev){if(ev.key==="Enter"){state.msgQuery=dtQ.value;go("news");}};}
+  var dtMic=document.getElementById("dtMic");
+  if(dtMic){dtMic.onclick=function(){toast(T("Voice search coming soon","Căutarea vocală va fi disponibilă în curând"));};}
 }
 function renderParishes(q){
   var list=PARISHES.filter(function(p){return !q||(p.name+" "+p.city).toLowerCase().indexOf(q)>=0;});
