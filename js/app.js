@@ -4,9 +4,9 @@ const $$=s=>Array.from(document.querySelectorAll(s));
 const ESC=h=>(h||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
 const state={route:"today",lang:"en",mode:"new",calM:null,calY:null,calSel:null,msgFilter:"All",msgQuery:"",nameQuery:""};
 const today=new Date();
-if(!state.calM){state.calM=today.getUTCMonth()+1;state.calY=today.getUTCFullYear();}
+if(!state.calM){state.calM=today.getMonth()+1;state.calY=today.getFullYear();}
 const pad=n=>(n<10?"0":"")+n;
-const dstr=d=>d.toISOString().replace(/T.*/,"");
+const dstr=d=>d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());
 const L=k=>((I18N[state.lang]&&I18N[state.lang][k])||I18N.en[k]||k);
 const T=(e,r)=>state.lang==="en"?e:r;
 const esc=x=>ESC(String(x==null?"":x));
