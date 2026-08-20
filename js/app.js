@@ -39,7 +39,11 @@ function sundayReading(iso){return Liturgical.sundayReading(iso,state.mode);}
 function feastLabel(f,ds){if(f)return state.lang==="en"?f.name_en:f.name_ro;if(ds)return state.lang==="en"?ds.en:ds.ro;return T("Memory of the saints of the day","Pomenirea sfinților zilei");}
 function screenToday(){
   var iso=dstr(today);var f=todayFeast();var fs=todayFast();var ds=daySaints(iso);var h="";
-  h+='<div class="today-hero"><div class="today-greet">'+esc(greeting())+'</div><div class="today-day">'+esc(fmtDayName()+" - "+fmtDayNum())+"</div></div>";
+  h+='<div class="dhero"><img src="assets/hero-cathedral.jpg" alt="">';
+  h+='<div class="dhero-header"><div class="dhero-avatar"><img src="assets/emblem.png" alt="ROEA"></div>';
+  h+='<div class="dhero-action" data-open="syn" data-iso="'+esc(iso)+'" style="cursor:pointer">'+ic("book")+((f||ds)?'<span class="dhero-dot"></span>':"")+"</div></div>";
+  h+='<div class="dhero-content"><div class="dhero-title">'+esc(greeting())+'</div><div class="dhero-sub">'+esc(fmtDayName()+" - "+fmtDayNum())+"</div></div>";
+  h+="</div>";
   h+='<div class="prayer-card" data-open="prayer"><div><div class="eyebrow">'+T("Today's Prayer","Rugăciunea zilei")+'</div><h3>'+T("Our Father","Tatăl nostru")+'</h3><p>'+T("The Lord's Prayer, the prayer of every Christian home.","Rugăciunea Domnului, rugăciunea fiecărei case creștine.")+'</p><span class="kbd">'+T("Read the prayer","Citește rugăciunea")+" "+ic("chev")+"</span></div></div>";
   h+='<div class="section-title">'+T("Today's Orthodox Life","Viața ortodoxă de azi")+"</div>";
   h+='<div class="ort-card"><div class="ort-row"><b>'+esc(feastLabel(f,ds))+"</b>"+(f?'<span class="tag">'+esc(rankLabel(f.rank))+"</span>":"")+"</div>";
@@ -164,6 +168,7 @@ function renderParishes(q){
 function go(route){
   state.route=route;
   $$("#tabbar .tab").forEach(function(t){t.classList.toggle("active",t.getAttribute("data-route")===route);});
+  document.body.classList.toggle("route-today",route==="today");
   renderList();
 }
 function wireTabs(){

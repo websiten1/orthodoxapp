@@ -316,3 +316,53 @@ body.admin #topbar,body.admin #tabbar{background:var(--ink)}
 body.admin .card,body.admin .item,body.admin .stat{background:rgba(255,255,255,.06);box-shadow:none;color:#fff}
 body.admin .field input,body.admin .field textarea,body.admin .field select{background:rgba(255,255,255,.08);color:#fff}
 body.admin h1.screen-title{color:#fff}
+
+/* ---------- Today tab: dark/gold skin (route-scoped, ported from
+   the orthodox-parish-home design system) — Today only; every other
+   tab stays the warm/light institutional theme. ---------- */
+body.route-today{background:#000}
+body.route-today #app{background:#000;color:#fff}
+body.route-today #topbar{background:#000}
+body.route-today .topbar-title strong{color:#fff}
+body.route-today .topbar-title span{color:#AEAEB2}
+body.route-today .icon-btn{background:#1C1C1E;color:#fff;box-shadow:none}
+body.route-today #tabbar{background:#000;box-shadow:none}
+body.route-today .tab{color:#AEAEB2}
+body.route-today .tab.active,body.route-today .tab.tab-center.active{color:#fff;background:transparent}
+
+body.route-today .dhero{position:relative;margin:0 0 18px;border-radius:0 0 var(--r-lg) var(--r-lg);overflow:hidden;height:38vh;min-height:260px}
+body.route-today .dhero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+body.route-today .dhero::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,.55) 100%)}
+body.route-today .dhero-header{position:absolute;top:14px;left:16px;right:16px;z-index:2;display:flex;align-items:center;justify-content:space-between}
+body.route-today .dhero-avatar{position:relative;overflow:hidden;width:44px;height:44px;border-radius:var(--r-pill);background:#fff;display:flex;align-items:center;justify-content:center;padding:8px;box-shadow:0 2px 10px rgba(0,0,0,.35)}
+body.route-today .dhero-avatar img{width:100%;height:100%;object-fit:contain}
+body.route-today .dhero-action{position:relative;width:44px;height:44px;border-radius:var(--r-pill);background:rgba(44,44,46,.72);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;color:#fff}
+body.route-today .dhero-action .ic{width:20px;height:20px}
+body.route-today .dhero-dot{position:absolute;top:8px;right:8px;width:8px;height:8px;border-radius:50%;background:#FF3B30}
+body.route-today .dhero-content{position:absolute;left:16px;right:16px;bottom:22px;z-index:2}
+body.route-today .dhero-title{font-family:var(--display);font-size:26px;font-weight:400;color:#fff;line-height:1.15}
+body.route-today .dhero-sub{margin-top:6px;font-family:var(--caps);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.78)}
+
+body.route-today .section-title{color:#AEAEB2}
+body.route-today .prayer-card{background:#1C1C1E;box-shadow:none}
+body.route-today .prayer-card h3{color:#fff}
+body.route-today .prayer-card p{color:#AEAEB2}
+body.route-today .prayer-air{background:#C9A227;color:#fff}
+body.route-today .ort-card{background:#1C1C1E;box-shadow:none}
+body.route-today .ort-row b{color:#fff}
+body.route-today .ort-sub{color:#AEAEB2}
+body.route-today .kbd{background:#2C2C2E;color:#fff}
+body.route-today .tag{background:#2C2C2E;color:#AEAEB2}
+body.route-today .fastbadge{background:#2C2C2E}
+body.route-today .fastbadge.free{color:#8fbf7a}
+body.route-today .fastbadge.oil{color:#C9A227}
+body.route-today .fastbadge.fish{color:#7fb3e0}
+body.route-today .fastbadge.strict{color:#e26a6a}
+body.route-today .fastbadge.lent{color:#b79ee0}
+body.route-today .list .item{background:#1C1C1E;box-shadow:none}
+body.route-today .item h3{color:#fff}
+body.route-today .item p{color:#AEAEB2}
+body.route-today .item .meta{color:#AEAEB2}
+body.route-today .chev{color:#AEAEB2}
+body.route-today .hier b{color:#fff}
+body.route-today .hier span{color:#AEAEB2}
